@@ -9,7 +9,7 @@ class Market(gym.Env):
         self.state = []
         for i in range(3):
             self.state += [[]]
-                for j in range(3):
+            for j in range(3):
                 self.state[i] += ["-"]
         self.counter = 0
         self.done = 0
