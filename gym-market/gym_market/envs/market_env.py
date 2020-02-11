@@ -3,7 +3,7 @@ from gym import error, spaces, utils
 from gym.utils import seeding
 
 class Market(gym.Env):
-	metadata = {'render.modes': ['human']}
+    metadata = {'render.modes': ['human']}
 
     def __init__(self):
         self.state = []
