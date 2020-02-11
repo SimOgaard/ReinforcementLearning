@@ -13,7 +13,7 @@ MAX_STEPS = 20000
 
 INITIAL_ACCOUNT_BALANCE = 10000
 
-class market(gym.Env):
+class Market(gym.Env):
     metadata = {'render.modes': ['human']}
 
     def __init__(self, df):
