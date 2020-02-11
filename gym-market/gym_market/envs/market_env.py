@@ -18,7 +18,7 @@ class Market(gym.Env):
 
     def __init__(self):
         df = pd.read_csv('/content/Market-environment/data/AAPL.csv')
-        super(StockTradingEnv, self).__init__()
+        super(Market, self).__init__()
 
         self.df = df
         self.reward_range = (0, MAX_ACCOUNT_BALANCE)
