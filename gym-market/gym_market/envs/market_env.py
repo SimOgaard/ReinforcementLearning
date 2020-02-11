@@ -65,7 +65,7 @@ class Market(gym.Env):
             self.add[win-1] = 1;
             if win == 1:
                 self.reward = 100
-        	else:
+            else:
                 self.reward = -100
 
         return [self.state, self.reward, self.done, self.add]
