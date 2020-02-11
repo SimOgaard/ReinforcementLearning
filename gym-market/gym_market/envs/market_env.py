@@ -16,7 +16,8 @@ INITIAL_ACCOUNT_BALANCE = 10000
 class Market(gym.Env):
     metadata = {'render.modes': ['human']}
 
-    def __init__(self, df):
+    def __init__(self):
+        df = pd.read_csv('/content/Market-environment/data/AAPL.csv')
         super(StockTradingEnv, self).__init__()
 
         self.df = df
