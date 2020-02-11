@@ -16,7 +16,7 @@ INITIAL_ACCOUNT_BALANCE = 10000
 class Market(gym.Env):
     metadata = {'render.modes': ['human']}
 
-    def __init__(self):
+    def __init__(self, df):
         super(Market, self).__init__()
 
         self.df = df
