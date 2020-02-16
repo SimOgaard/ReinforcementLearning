@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='gym_market',
+    name='Market_environment',
     version='0.0.1',
     packages=find_packages(),
 
