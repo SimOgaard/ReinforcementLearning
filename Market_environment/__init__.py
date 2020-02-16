@@ -6,7 +6,7 @@ from . import datasets
 
 register(
     id='market-v0',
-    entry_point='gym_market.envs:Market',
+    entry_point='Market_environment.envs:Market',
     kwargs={
         'df': deepcopy(datasets.A),
         'window_size': 30,
