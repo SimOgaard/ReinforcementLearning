@@ -66,7 +66,7 @@ class Market(gym.Env):
         self.states = []
         self.state = None
 
-        for path in glob.glob("/content/Market-environment/data/*.csv'):
+        for path in glob.glob("/content/Market-environment/data/*.csv"):
             if not os.path.isfile(path):
                 continue
 
