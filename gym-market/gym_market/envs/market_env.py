@@ -55,7 +55,7 @@ class MarketState:
 class Market(gym.Env):
     metadata = {'render.modes': ['human']}
 
-    def __init__(self, datadir):
+    def __init__(self):
         self.bound = 100000
 
         self.comission = 0.1 / 100.
@@ -66,7 +66,7 @@ class Market(gym.Env):
         self.states = []
         self.state = None
 
-        for path in glob.glob(datadir + '/*.csv'):
+        for path in glob.glob('/*.csv'):
             if not os.path.isfile(path):
                 continue
 
