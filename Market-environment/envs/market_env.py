@@ -3,7 +3,7 @@ import numpy as np
 from .trading_env import TradingEnv, Actions, Positions
 
 
-class Market(TradingEnv):
+class MarketEnv(TradingEnv):
 
     def __init__(self, df, window_size, frame_bound):
         assert len(frame_bound) == 2
