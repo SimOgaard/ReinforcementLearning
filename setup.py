@@ -13,6 +13,6 @@ setup(
     ],
 
     package_data={
-        'Market-environment': ['datasets/data/*']
+        'Market_environment': ['datasets/data/*']
     }
 )
