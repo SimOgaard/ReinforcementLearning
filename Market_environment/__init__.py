@@ -1,8 +1,14 @@
 from gym.envs.registration import register
 from copy import deepcopy
-from datasets.utils import load_dataset as _load_dataset
+import os
+import pandas as pd
 
-df = _load_dataset('A', 'Date')
+def load_dataset(name, index_name):
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    path = os.path.join(base_dir, 'data', name + '.csv')
+    return pd.read_csv(path, index_col=index_name)
+
+df = load_dataset('A', 'Date')
 
 register(
     # DF = _load_dataset('A', 'Date')
