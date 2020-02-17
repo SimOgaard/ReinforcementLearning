@@ -11,12 +11,11 @@ def load_dataset(name, index_name):
 df = load_dataset('A', 'Date')
 
 register(
-    # DF = _load_dataset('A', 'Date')
     id='market-v0',
     entry_point='Market_environment.envs:MarketEnv',
     kwargs={
-        'df': deepcopy(datasets.df),
+        'df': deepcopy(df),
         'window_size': 30,
-        'frame_bound': (30, len(datasets.df))
+        'frame_bound': (30, len(df))
     }
 )
