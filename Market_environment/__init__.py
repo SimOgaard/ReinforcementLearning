@@ -8,6 +8,8 @@ def load_dataset(name, index_name):
     path = os.path.join(base_dir, 'datasets/data', name + '.csv')
     return pd.read_csv(path, index_col=index_name)
 
+df = load_dataset('A', 'Date')
+
 register(
     id='market-v0',
     entry_point='Market_environment.envs:MarketEnv',
