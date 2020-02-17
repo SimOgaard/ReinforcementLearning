@@ -27,11 +27,7 @@ def FileSortments(startDate):
         except Exception as e:
             print("Failed to read",ticker, e)
 
-def DateRange(start_date, end_date):
-    for n in range(int((end_date - start_date).days)):
-        yield start_date + timedelta(n)
-
 startDate = date(2017, 1, 1)
 endDate = date(2020, 2, 1)
 
-FileSortments(startDate)
+FileSortments(startDate) # Takes A While
