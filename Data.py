@@ -11,6 +11,7 @@ def FileSortments(startDate):
 
     ap = argparse.ArgumentParser()
     ap.add_argument("-s", "--stockAmount", required=False, default=500)
+    args = vars(ap.parse_args())
     stockAmount = int(args["stockAmount"])
 
     table = bs.BeautifulSoup(requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies").text, "lxml").find("table", {"class":"wikitable sortable"})
