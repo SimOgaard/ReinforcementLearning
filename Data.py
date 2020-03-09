@@ -14,16 +14,16 @@ def FileSortments(startDate):
         ticker = row.find_all('td')[0].text
         tickers.append(ticker[:-1])
 
-    with open("Market_environment/datasets/sp500tickers.pickle","wb") as f:
+    with open("/content/Market-environment/Market_environment/datasets/sp500tickers.pickle","wb") as f:
         pickle.dump(tickers,f)
 
     for ticker in tickers:
         try:
-            web.DataReader(ticker, "yahoo", dt.datetime(startDate.year, startDate.month, startDate.day), dt.datetime.now()).to_csv("Market_environment/datasets/data/{}.csv".format(ticker))
+            web.DataReader(ticker, "yahoo", dt.datetime(startDate.year, startDate.month, startDate.day), dt.datetime.now()).to_csv("/content/Market-environment/Market_environment/datasets/data/{}.csv".format(ticker))
         except Exception as e:
             print("Failed to read",ticker, e)
 
 startDate = date(2017, 1, 1)
-endDate = date(2020, 2, 1)
+endDate = date(2020, 1, 1)
 
 FileSortments(startDate)
