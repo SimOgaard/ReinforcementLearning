@@ -13,7 +13,6 @@ MAX_STEPS = 20000
 
 INITIAL_ACCOUNT_BALANCE = 10000
 
-
 class StockTradingEnv(gym.Env):
     """A stock trading environment for OpenAI gym"""
     metadata = {'render.modes': ['human']}

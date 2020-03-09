@@ -15,6 +15,7 @@ class MarketEnv(TradingEnv):
         self.trade_fee_ask_percent = 0.005
 
     def _process_data(self):
+        print("lol")
         prices = self.df.loc[:, 'Close'].to_numpy()
 
         prices[self.frame_bound[0] - self.window_size]  # validate index (TODO: Improve validation)

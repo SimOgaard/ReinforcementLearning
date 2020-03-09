@@ -33,6 +33,5 @@ def FileSortments(startDate):
             print("Failed to read",ticker, e)
 
 startDate = date(2017, 1, 1)
-endDate = date(2020, 1, 1)
 
 FileSortments(startDate)
