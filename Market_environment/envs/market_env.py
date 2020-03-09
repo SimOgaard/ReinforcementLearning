@@ -10,8 +10,10 @@ class MarketEnv(TradingEnv):
         self.frame_bound = frame_bound
         super().__init__(df, window_size)
 
-        self.trade_fee_bid_percent = 0.01
-        self.trade_fee_ask_percent = 0.005
+        # self.trade_fee_bid_percent = 0.01
+        # self.trade_fee_ask_percent = 0.005
+        self.trade_fee_bid_percent = 0
+        self.trade_fee_ask_percent = 0
 
     def _process_data(self):
         print("lol")
