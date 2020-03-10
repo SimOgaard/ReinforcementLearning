@@ -6,20 +6,24 @@ Detta är en fortsättning av mitt [Förra Projekt](https://github.com/abbsimoga
 ## Bakgrund
 I denna fortsättning använde jag mig utav bibloteket **_OpenAI gym_** för att skapa mitt egna *enviornment*. Med bakgrundskunskaper från **_Hands-On Q-Learningwith Python_** och praktiska kunskaper där jag skulle intregrera **_Q-Lerning_** till tre redan skapade gym [*Taxi*, *CartPole* och *Bandit*](https://colab.research.google.com/drive/1RwkDfI0lxFZmXXNk1q88PWA7HQiJjlBL#scrollTo=Ac6y6qG-3kV3). Arbetet började med skapandet av ett eget *Tic Tac Toe* [gym](https://github.com/abbsimoga/TicTacGym) pga enkelheten följd [Medium länk](https://medium.com/@apoddar573/making-your-own-custom-environment-in-gym-c3b65ff8cdaa). Större del av detta arbetet följde min förra kod och exemplerna ovan men även denna [Medium länk](https://towardsdatascience.com/creating-a-custom-openai-gym-environment-for-stock-trading-be532be3910e).
 
-
-
 # Grafer
 
 ### Avläsande av graf
-<De första 450 värderna som inte är markerade är 'observation'>
-<De markerade värderna tyder på 'agents'>
+**_Gröna_** och **_röda_** markörer tyder på *Short* och *Long* positioner. Förklarning finner du [Här](https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/stock-purchases-and-sales-long-and)
+**_Totl Profit_** är multipliken av pengarna agenten började med. *Total Profit* på **2** betyder att agenten dubblade sin insats. Total Profit på **0.5** betyder att agenten förlorade halva sin insats.
+**_max_possible_profit_** är den största möjliga multipliken av pengarna agenten började med.
+**_Y-Axeln_** är värdet på axtsien ["Close"] värde definition finner du [Här](https://www.investopedia.com/terms/c/closingprice.asp)
+**_X-Axeln_** är indexen på [csv filerna](../datasets/). Ett steg i *X-Axeln* är en tidsperiod frammåt. Nerladdad data är tidsperioden *Dygn*, kan vara timmar osv och har ingen större effekt på agentens beteende.
 
 ## Slutsatser
-Tydlig visning på 'agentens' observation av marknadens flöde
-När observationen liknar framtida 'states' kan 'agenten' använda det till sin vinst
+Bilden nedan visar på *agentens* observation av marknadens flöde. När observationen *det blå* tydligt tyder på marknadens tillväxt använder *agenten* det till sin vinst se **_Total Profit_** i bild. 
 ![png](docs/Capture3.JPG)
 
-mönster
+
+
+Mönstret kan föränklas till 
+
+
 
 Tydlig visning på när 'agentens' observation inte håller sig konsistant
 När observationen tyder på tillväxt kommer agenten skapa en 123 
