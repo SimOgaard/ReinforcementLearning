@@ -11,8 +11,8 @@ I denna fortsättning använde jag mig utav bibloteket **_OpenAI gym_** för att
 # Grafer
 
 ### Avläsande av graf
-    De första 450 värderna som inte är markerade är 'observation'
-    De markerade värderna tyder på 'agents'
+<De första 450 värderna som inte är markerade är 'observation'>
+<De markerade värderna tyder på 'agents'>
 
 ## Slutsatser
 Tydlig visning på 'agentens' observation av marknadens flöde
