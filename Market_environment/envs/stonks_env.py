@@ -9,7 +9,6 @@ class Actions(Enum):
     Sell = 0
     Buy = 1
 
-
 class Positions(Enum):
     Short = 0
     Long = 1
@@ -66,7 +65,7 @@ class MarketEnv(gym.Env):
         self._position = Positions.Short
         self._position_history = (self.window_size * [None]) + [self._position]
         self._total_reward = 0.
-        self._total_profit = 1.  # unit
+        self._total_profit = 1.
         self._first_rendering = True
         return self._get_observation()
 

@@ -1,6 +1,4 @@
-from datetime import timedelta, date
-
-def FileSortments(startDate):
+def FileSortments():
     import requests
     import pandas_datareader.data as web
     import pickle
@@ -8,11 +6,16 @@ def FileSortments(startDate):
     import bs4 as bs
     import os
     import argparse
+    from datetime import date
+
+# startDate = date(2017, 1, 1)
 
     ap = argparse.ArgumentParser()
-    ap.add_argument("-s", "--stockAmount", required=False, default=500)
+    ap.add_argument("-sa", "--stockAmount", required=False, default=500)
+    ap.add_argument("-sd", "--startDate", type=mkdate, required=False, default=date(2017, 1, 1))
     args = vars(ap.parse_args())
     stockAmount = int(args["stockAmount"])
+    startDate = args["startDate"]
 
     table = bs.BeautifulSoup(requests.get("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies").text, "lxml").find("table", {"class":"wikitable sortable"})
     tickers = []
@@ -32,6 +35,4 @@ def FileSortments(startDate):
         except Exception as e:
             print("Failed to read",ticker, e)
 
-startDate = date(2017, 1, 1)
-
-FileSortments(startDate)
+FileSortments()
