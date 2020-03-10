@@ -8,6 +8,9 @@ def FileSortments():
     import argparse
     from datetime import date
 
+    def mkdate(datestring):
+        return datetime.datetime.strptime(datestring, '%Y-%m-%d').date()
+
 # startDate = date(2017, 1, 1)
 
     ap = argparse.ArgumentParser()
