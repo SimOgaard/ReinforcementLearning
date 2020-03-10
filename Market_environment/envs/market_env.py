@@ -11,10 +11,10 @@ class MarketEnv(TradingEnv):
         self.frame_bound = frame_bound
         super().__init__(df, window_size)
 
-        self.trade_fee_bid_percent = 0.01  # unit
-        self.trade_fee_ask_percent = 0.005  # unit
-        # self.trade_fee_bid_percent = 0  # unit
-        # self.trade_fee_ask_percent = 0  # unit
+        # self.trade_fee_bid_percent = 0.01  # unit
+        # self.trade_fee_ask_percent = 0.005  # unit
+        self.trade_fee_bid_percent = 0  # unit
+        self.trade_fee_ask_percent = 0  # unit
 
     def _process_data(self):
         prices = self.df.loc[:, 'Close'].to_numpy()
