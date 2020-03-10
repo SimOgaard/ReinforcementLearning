@@ -9,7 +9,7 @@ def FileSortments():
     from datetime import date
 
     def mkdate(datestring):
-        return dt.strptime(datestring, '%Y-%m-%d').date()
+        return dt.datetime.strptime(datestring, '%Y-%m-%d').date()
 
 # startDate = date(2017, 1, 1)
 
