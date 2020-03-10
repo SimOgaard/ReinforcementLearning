@@ -1,14 +1,21 @@
 # Market-environment
 
-Detta är en fortsättning av mitt förra projekt (https://github.com/abbsimoga/Enstaka-programerings-projekt/tree/master/Enstaka_programering/StockMarket)
+## Uppgift
+Detta är en fortsättning av mitt [Förra Projekt](https://github.com/abbsimoga/Enstaka-programerings-projekt/tree/master/Enstaka_programering/StockMarket)
 
-I denna fortsättning använde jag mig utav bibloteket OpenAI gym för att skapa mitt egna enviornment. Med bakgrundskunskaper från 'Hands-On Q-Learningwith Python' och praktiska kunskaper där jag skulle intregrera Q-Lerning till tre redan skapade gym Taxi, CartPole och Bandit (https://colab.research.google.com/drive/1RwkDfI0lxFZmXXNk1q88PWA7HQiJjlBL#scrollTo=Ac6y6qG-3kV3). Arbetet började med skapandet av ett eget Tic Tac Toe gym (https://github.com/abbsimoga/TicTacGym) pga enkelheten följd Medium länk (https://medium.com/@apoddar573/making-your-own-custom-environment-in-gym-c3b65ff8cdaa). Större del av detta arbetet följde min förra kod och exemplerna ovan men även denna Medium länk (https://towardsdatascience.com/creating-a-custom-openai-gym-environment-for-stock-trading-be532be3910e).
+## Bakgrund
+I denna fortsättning använde jag mig utav bibloteket **_OpenAI gym_** för att skapa mitt egna *enviornment*. Med bakgrundskunskaper från **_Hands-On Q-Learningwith Python_** och praktiska kunskaper där jag skulle intregrera *Q-Lerning* till tre redan skapade gym [*Taxi*, *CartPole* och *Bandit*](https://colab.research.google.com/drive/1RwkDfI0lxFZmXXNk1q88PWA7HQiJjlBL#scrollTo=Ac6y6qG-3kV3). Arbetet började med skapandet av ett eget *Tic Tac Toe* [gym](https://github.com/abbsimoga/TicTacGym) pga enkelheten följd [Medium länk](https://medium.com/@apoddar573/making-your-own-custom-environment-in-gym-c3b65ff8cdaa). Större del av detta arbetet följde min förra kod och exemplerna ovan men även denna [Medium länk](https://towardsdatascience.com/creating-a-custom-openai-gym-environment-for-stock-trading-be532be3910e).
 
+
+
+# Grafer
+
+### Avläsande av graf
 För att läsa av graferna:
     De första 450 värderna som inte är markerade är 'observation'
     De markerade värderna tyder på 'agents'
 
-
+## Slutsatser
 Tydlig visning på 'agentens' observation av marknadens flöde
 När observationen liknar framtida 'states' kan 'agenten' använda det till sin vinst
 ![png](docs/Capture3.JPG)
