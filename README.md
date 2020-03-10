@@ -35,7 +35,7 @@ Bilden nedan visar på *agentens* observation av marknadens flöde. När observa
 ![png](docs/Capture3.JPG)
 
 #### Bild 2:1
-De två kommande bilder visar på när *agentens* observation inte håller sig konsistant under hela miljön. *Agenten* har under observationen lärt sig ett mönster och när det mönstret bryts på grund av aktsiers *"randomness"* vet inte *agenten* vad den ska göra och går i förlust se **_Total Profit_** i bild.
+De två kommande bilder visar på när *agentens* observation inte håller sig konsistant under hela miljön. *Agenten* har under observationen lärt sig ett mönster och när det mönstret bryts på grund av aktsiers *"randomness"* vet inte *agenten* vad den ska göra och går i förlust se **_Total Profit_** i **Bild** **2:1** och **2:2**.
 ![png](docs/Capture1.JPG)
 
 #### Bild 2:2
