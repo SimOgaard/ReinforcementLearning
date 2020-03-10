@@ -13,7 +13,7 @@ I denna fortsättning använde jag mig utav bibloteket **_OpenAI gym_** för att
 **_Totl Profit_** är multipliken av pengarna agenten började med. *Total Profit* på **2** betyder att agenten dubblade sin insats. Total Profit på **0.5** betyder att agenten förlorade halva sin insats.
 **_max_possible_profit_** är den största möjliga multipliken av pengarna agenten började med.
 **_Y-Axeln_** är värdet på axtsien ["Close"] värde definition finner du [Här](https://www.investopedia.com/terms/c/closingprice.asp)
-**_X-Axeln_** är indexen på [csv filerna](../datasets/). Ett steg i *X-Axeln* är en tidsperiod frammåt. Nerladdad data är tidsperioden *Dygn*, kan vara timmar osv och har ingen större effekt på agentens beteende.
+**_X-Axeln_** är indexen på [csv filerna](/datasets/). Ett steg i *X-Axeln* är en tidsperiod frammåt. Nerladdad data är tidsperioden *Dygn*, kan vara timmar osv och har ingen större effekt på agentens beteende.
 
 ## Slutsatser
 Bilden nedan visar på *agentens* observation av marknadens flöde. När observationen *det blå* tydligt tyder på marknadens tillväxt använder *agenten* det till sin vinst se **_Total Profit_** i bild. 
