@@ -13,17 +13,17 @@ Jag kommer härdan över nämna några ord som **_agent_**, **_enviornment_**, *
 ### RL-algorythmer och Q-Learning
 **Reinforcement Learning** är en typ av maskininlärnings metod där en **_agent_** får belöningar av sinna förra handlingar i ett **_environment_**.
 
-#### Environment & Agent
-**_Environment_** är själva miljön som **_agenten_** agerar på. För spelet *Tic Tac Toe* är miljön "spel planen". För problemet *Taxi* är miljön "parkeringen". Och för detta *Market-environment* är miljön en "aktie". **_Environment_** skickar en **_state_** till **_agenten_** som med dess **_policy_** ska kunna ta en **_action_** baserad på vad det är för **_state_**. Sedan skickar **_environment_** det nästa **_state_** och en **_reward_** till **_agenten_**. Denna loop avslutas när **_environment_** skickar en bool *Done*.
+### Environment & Agent
+**_Environment_** är själva miljön som **_agenten_** agerar på. För spelet *Tic Tac Toe* är miljön "spel planen". För problemet *Taxi* är miljön "parkeringen". Och för detta *Market-environment* är miljön en "aktie". **_Environment_** skickar en **_state_** till **_agenten_** som med dess **_policy_** ska kunna ta en **_action_** baserad på vad det är för **_state_**. Sedan skickar **_environment_** det nästa **_state_** och en **_reward_** till **_agenten_** som används för att uppdatera **_policy_**. Denna loop avslutas när **_environment_** skickar en bool *Done*.
 ![png](docs/RL.png)
 
-##### Action
+#### State, Action, Reward, Policy
 **_Action_** är alla möjliga drag som **_agenten_** kan ta.
-##### State
+
 **_State_** är den nuvarande tillståndet som retunerades av **_environment_**.
-##### Reward
+
 **_Reward_** är en utvärdering av **_agentens_** förra **_action_**.
-##### Policy
+
 **_Policy_** är strategin som **_agenten_** använder för att bestämma nästa **_action_** baserad på det aktuella **_state_**. Typ **_agentens_** "kunskaper".
 
 
@@ -54,7 +54,7 @@ Jag kommer härdan över nämna några ord som **_agent_**, **_enviornment_**, *
 
 **_Y-Axeln_** är värdet på aktsiens *["Close"]* värde, definition finner du [Här](https://www.investopedia.com/terms/c/closingprice.asp).
 
-**_X-Axeln_** är indexen på [csv filerna](https://github.com/abbsimoga/Market-environment/tree/master/Market_environment/datasets). Ett steg i *X-Axeln* är en tidsperiod frammåt. För nerladdad data är tidsperioden i *Dygn*.
+**_X-Axeln_** är indexen på [csv filerna](https://github.com/abbsimoga/Market-environment/tree/master/Market_environment/datasets). Ett steg i *X-Axeln* är en tidsperiod frammåt. För nerladdad data används [detta script](https://github.com/abbsimoga/Market-environment/blob/master/Data.py) där tidsperioden är i *Dygn*.
 
 ## Reflektion1
 ### Bild 1
