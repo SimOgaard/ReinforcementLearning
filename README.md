@@ -14,7 +14,7 @@ Jag kommer härdan över nämna några ord som **_agent_**, **_enviornment_**, *
 **Reinforcement Learning** är en typ av maskininlärnings metod där en **_agent_** får belöningar av sinna förra handlingar i ett **_environment_**.
 
 #### Environment & Agent
-Är själva miljön som **_agenten_** agerar på. För spelet *Tic Tac Toe* är miljön "spel planen". För problemet *Taxi* är miljön "parkeringen". Och för detta *Market-environment* är miljön en "aktie". **_Environment_** skickar en **_state_** till **_agenten_** som med dess "kunskap" ska kunna ta en **_action_** baserad på vad det är för **_state_** och dess tidigare "kunskaper". Sedan skickar **_environment_** det nästa **_state_** och en **_reward_** till **_agenten_**. Denna loop avslutas när **_environment_** skickar en bool *Done*.
+**_Environment_** är själva miljön som **_agenten_** agerar på. För spelet *Tic Tac Toe* är miljön "spel planen". För problemet *Taxi* är miljön "parkeringen". Och för detta *Market-environment* är miljön en "aktie". **_Environment_** skickar en **_state_** till **_agenten_** som med dess **_policy_** ska kunna ta en **_action_** baserad på vad det är för **_state_**. Sedan skickar **_environment_** det nästa **_state_** och en **_reward_** till **_agenten_**. Denna loop avslutas när **_environment_** skickar en bool *Done*.
 ![png](docs/RL.png)
 
 ##### Action
@@ -24,11 +24,13 @@ Jag kommer härdan över nämna några ord som **_agent_**, **_enviornment_**, *
 ##### Reward
 **_Reward_** är en utvärdering av **_agentens_** förra **_action_**.
 ##### Policy
-Strategin som **_agenten_** använder för att bestämma nästa **_action_** baserad på det aktuella **_state_**. Typ **_agentens_** "kunskaper".
+**_Policy_** är strategin som **_agenten_** använder för att bestämma nästa **_action_** baserad på det aktuella **_state_**. Typ **_agentens_** "kunskaper".
 
 
 -Användning av Q-table som löser taxi problemet
+
 -Användning av *** som löser cartpole problemet
+
 -Testa använda båda och komma fram till vad som är bäst
 
 -Argumentera för användningen av en marchove chain och varför det är bättre att se flera states
@@ -90,3 +92,5 @@ Kommande bild visar på att invistering i aktsier *innom* **_sp500_** leder till
 ## Framtida projekt
 
 #### Använd flera aktsiers data för att minska förlusten vid stora dropp.
+#### Göra fler tester av andra "policy" och "modell's"
+#### Använd annan typ av RL-algorythm
