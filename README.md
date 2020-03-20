@@ -1,9 +1,8 @@
 # Market-environment
 
 ## Uppgift
-Detta är en fortsättning av mitt [Förra Projekt](https://github.com/abbsimoga/Enstaka-programerings-projekt/tree/master/Enstaka_programering/StockMarket)
+Detta är en fortsättning av mitt [Förra Projekt](https://github.com/abbsimoga/Enstaka-programerings-projekt/tree/master/Enstaka_programering/StockMarket).
 
-## Bakgrund
 I denna fortsättning använde jag mig utav bibloteket **_OpenAI gym_** för att skapa mitt egna *enviornment*. Med bakgrundskunskaper från **_Hands-On Q-Learningwith Python_** och praktiska kunskaper där jag skulle intregrera **_Q-Lerning_** till tre redan skapade gym [*Taxi*, *CartPole* och *Bandit*](https://colab.research.google.com/drive/1RwkDfI0lxFZmXXNk1q88PWA7HQiJjlBL#scrollTo=Ac6y6qG-3kV3).
 
 Arbetet började med skapandet av ett eget *Tic Tac Toe* [gym](https://github.com/abbsimoga/TicTacGym) på grund av arbetets komplexitet. [Här](https://medium.com/@apoddar573/making-your-own-custom-environment-in-gym-c3b65ff8cdaa) är Medium länken jag följde för skapandet av *Tic Tac Toe* gymmet. Större del av detta arbetet följde min förra kod och exemplerna ovan men även denna [Medium länk](https://towardsdatascience.com/creating-a-custom-openai-gym-environment-for-stock-trading-be532be3910e).
@@ -11,8 +10,20 @@ Arbetet började med skapandet av ett eget *Tic Tac Toe* [gym](https://github.co
 # Förklarning av Q-Learning
 Jag kommer härdan över nämna några ord som **_agent_**, **_enviornment_**, **_state_** och **_observation_** mm. Och ska försöka ge dig enkla förklarningar för vad dessa betyder. Samt ge dig en generell förståelse över hur RL-algorythmer funkar speciellt Q-Learning.
 
-### Agent
-En **agent** är
+### RL-algorythmer och Q-Learning
+**Reinforcement Learning** är en typ av maskininlärnings metod där en **_agent_** får belöningar av sinna förra handlingar i ett **_environment_**.
+
+#### Environment
+Är själva miljön som **_agenten_** agerar på. För spelet *Tic Tac Toe* är miljön "spel planen". För problemet *Taxi* är miljön "parkeringen". Och för detta *Market-environment* är miljön en "aktie". **_Environment_** skickar en **_state_** till **_agenten_** som med dess "kunskap" ska kunna ta en **_action_** baserad på vad det är för **_state_** och dess tidigare "kunskaper". Sedan skickar **_environment_** det nästa **_state_** och en **_reward_** till **_agenten_**.
+![png](docs/RL.png)
+
+#### Agent
+En **agent** är 
+
+
+
+användning av Q-table som löser taxi problemet 
+användning av *** som löser cartpole problemet
 
 # Grafer
 
@@ -25,7 +36,7 @@ En **agent** är
 
 **_max_possible_profit_** är den största möjliga multipliken av pengarna agenten började med.
 
-**_Y-Axeln_** är värdet på aktsiens *["Close"]* värde definition finner du [Här](https://www.investopedia.com/terms/c/closingprice.asp)
+**_Y-Axeln_** är värdet på aktsiens *["Close"]* värde, definition finner du [Här](https://www.investopedia.com/terms/c/closingprice.asp).
 
 **_X-Axeln_** är indexen på [csv filerna](https://github.com/abbsimoga/Market-environment/tree/master/Market_environment/datasets). Ett steg i *X-Axeln* är en tidsperiod frammåt. För nerladdad data är tidsperioden i *Dygn*.
 
@@ -43,7 +54,7 @@ De två kommande bilder visar på när *agentens* observation inte håller sig k
 
 #### **_Slutsats1:1_** Agenten hittar lätt mönster på tydlig tillväxt och tillbakagång och kan använda det till sin vinst.
 
-#### **_Slutsats1:2_** Agenten förstår sig inte på "glitches" i mönstret.
+#### **_Slutsats1:2_** Agenten förstår sig inte på när mönstret bryts.
 
 ## Reflektion2
 ### Bild 3
@@ -64,4 +75,4 @@ Kommande bild visar på att invistering i aktsier *innom* **_sp500_** leder till
 
 ## Framtida projekt
 
-### Använd flera aktsiers data för att minska förlusten vid stora dropp.
+#### Använd flera aktsiers data för att minska förlusten vid stora dropp.
