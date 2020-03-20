@@ -8,22 +8,36 @@ I denna fortsättning använde jag mig utav bibloteket **_OpenAI gym_** för att
 Arbetet började med skapandet av ett eget *Tic Tac Toe* [gym](https://github.com/abbsimoga/TicTacGym) på grund av arbetets komplexitet. [Här](https://medium.com/@apoddar573/making-your-own-custom-environment-in-gym-c3b65ff8cdaa) är Medium länken jag följde för skapandet av *Tic Tac Toe* gymmet. Större del av detta arbetet följde min förra kod och exemplerna ovan men även denna [Medium länk](https://towardsdatascience.com/creating-a-custom-openai-gym-environment-for-stock-trading-be532be3910e).
 
 # Förklarning av Q-Learning
-Jag kommer härdan över nämna några ord som **_agent_**, **_enviornment_**, **_state_** och **_observation_** mm. Och ska försöka ge dig enkla förklarningar för vad dessa betyder. Samt ge dig en generell förståelse över hur RL-algorythmer funkar speciellt Q-Learning.
+Jag kommer härdan över nämna några ord som **_agent_**, **_enviornment_**, **_state_** med mera. Och ska försöka ge dig enkla förklarningar för vad dessa betyder. Samt ge dig en generell förståelse över hur RL-algorythmer funkar speciellt Q-Learning.
 
 ### RL-algorythmer och Q-Learning
 **Reinforcement Learning** är en typ av maskininlärnings metod där en **_agent_** får belöningar av sinna förra handlingar i ett **_environment_**.
 
-#### Environment
-Är själva miljön som **_agenten_** agerar på. För spelet *Tic Tac Toe* är miljön "spel planen". För problemet *Taxi* är miljön "parkeringen". Och för detta *Market-environment* är miljön en "aktie". **_Environment_** skickar en **_state_** till **_agenten_** som med dess "kunskap" ska kunna ta en **_action_** baserad på vad det är för **_state_** och dess tidigare "kunskaper". Sedan skickar **_environment_** det nästa **_state_** och en **_reward_** till **_agenten_**.
+#### Environment & Agent
+Är själva miljön som **_agenten_** agerar på. För spelet *Tic Tac Toe* är miljön "spel planen". För problemet *Taxi* är miljön "parkeringen". Och för detta *Market-environment* är miljön en "aktie". **_Environment_** skickar en **_state_** till **_agenten_** som med dess "kunskap" ska kunna ta en **_action_** baserad på vad det är för **_state_** och dess tidigare "kunskaper". Sedan skickar **_environment_** det nästa **_state_** och en **_reward_** till **_agenten_**. Denna loop avslutas när **_environment_** skickar en bool *Done*.
 ![png](docs/RL.png)
 
-#### Agent
-En **agent** är 
+##### Action
+**_Action_** är alla möjliga drag som **_agenten_** kan ta.
+##### State
+**_State_** är den nuvarande tillståndet som retunerades av **_environment_**.
+##### Reward
+**_Reward_** är en utvärdering av **_agentens_** förra **_action_**.
+##### Policy
+Strategin som **_agenten_** använder för att bestämma nästa **_action_** baserad på det aktuella **_state_**. Typ **_agentens_** "kunskaper".
 
 
+-Användning av Q-table som löser taxi problemet
+-Användning av *** som löser cartpole problemet
+-Testa använda båda och komma fram till vad som är bäst
 
-användning av Q-table som löser taxi problemet 
-användning av *** som löser cartpole problemet
+-Argumentera för användningen av en marchove chain och varför det är bättre att se flera states
+
+-Argumentera för olika Policys'. on policy / off policy. Även model-free / model-based.
+
+-Argumentera för olika värden på gamma, alpha, beta etctra och varför det är bra att använda låg gamma i detta exempel. Tessta även med kod.
+
+-Vad alla dessa har för effekter på algorythmen och varför du då använde x istället för y när du skulle lösa z.
 
 # Grafer
 
