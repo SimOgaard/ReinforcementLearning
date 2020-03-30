@@ -4,7 +4,7 @@ import os
 import pandas as pd
 
 def load_dataset(name, index_name):
-    return pd.read_csv("/content/ReinforcementLearning/DataMarket/data/"+name, index_col=index_name)
+    return pd.read_csv("/content/ReinforcementLearning/DataMarket/data/"+name+".csv", index_col=index_name)
 
 df = load_dataset('AAP', 'Date')
 
