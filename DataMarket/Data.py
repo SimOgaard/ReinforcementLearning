@@ -11,8 +11,6 @@ def FileSortments():
     def mkdate(datestring):
         return dt.datetime.strptime(datestring, '%Y-%m-%d').date()
 
-# startDate = date(2017, 1, 1)
-
     ap = argparse.ArgumentParser()
     ap.add_argument("-sa", "--stockAmount", required=False, default=500)
     ap.add_argument("-sd", "--startDate", type=mkdate, required=False, default=date(2017, 1, 1))
@@ -27,14 +25,14 @@ def FileSortments():
         ticker = row.find_all('td')[0].text
         tickers.append(ticker[:-1])
 
-    with open("/content/Market-environment/Market_environment/datasets/sp500tickers.pickle","wb") as f:
+    with open("/content/ReinforcementLearning/DataMarket/sp500tickers.pickle","wb") as f:
         pickle.dump(tickers,f)
 
-    os.mkdir("/content/Market-environment/Market_environment/datasets/data/")
+    os.mkdir("/content/ReinforcementLearning/DataMarket/data/")
 
     for ticker in tickers[:stockAmount]:
         try:
-            web.DataReader(ticker, "yahoo", dt.datetime(startDate.year, startDate.month, startDate.day), dt.datetime.now()).to_csv("/content/Market-environment/Market_environment/datasets/data/{}.csv".format(ticker))
+            web.DataReader(ticker, "yahoo", dt.datetime(startDate.year, startDate.month, startDate.day), dt.datetime.now()).to_csv("/content/ReinforcementLearning/DataMarket/data/{}.csv".format(ticker))
         except Exception as e:
             print("Failed to read",ticker, e)
 
