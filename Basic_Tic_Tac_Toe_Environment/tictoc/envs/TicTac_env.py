@@ -4,12 +4,12 @@ from gym.utils import seeding
 import numpy as np
 
 class TicTac(gym.Env):
-	metadata = {'render.modes': ['human']}
-
+    metadata = {'render.modes': ['human']}
+    
     def __init__(self):
         self.state = np.zeros((3,3))
-		self.done = False
-		self.reward = 0
+        self.done = False
+        self.reward = 0
         self.turn = 0
     
     def check(self):
