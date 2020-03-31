@@ -31,7 +31,6 @@ class TicTac(gym.Env):
     def step(self, target):
         if self.state[int(target/3)][target%3]:
             print("invalid step")
-            return [self.state, self.reward, self.done, self.turn]
         else:
             if not self.turn%2 == 0:
                 self.state[int(target/3)][target%3] = 1
