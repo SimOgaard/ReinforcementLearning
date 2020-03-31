@@ -32,9 +32,7 @@ class TicTac(gym.Env):
         return 0
 
     def step(self, target):
-        if self.done:
-            print("game over")
-        elif self.state[int(target/3)][target%3]:
+        if self.state[int(target/3)][target%3]:
             print("invalid step")            
         else:
             print(self.turn)
@@ -46,6 +44,11 @@ class TicTac(gym.Env):
             if self.turn == 9:
                 print(self.turn)
                 self.done = True
+
+        self.render()
+
+        if self.done:
+            print("game over, no one won")
 
         winner = self.check()
         if winner:
