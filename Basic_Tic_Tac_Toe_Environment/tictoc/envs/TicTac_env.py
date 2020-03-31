@@ -13,12 +13,12 @@ class TicTac(gym.Env):
         self.turn = 0
     
     def check(self):
-        for x in self.state:
+        for x in np.nditer(self.state):
             if x == [1,1,1]:
                 return 1
             if x == [2,2,2]:
                 return 2
-        for y in np.rot90(self.state):
+        for y in np.nditer(self.state)):
             if y == [1,1,1]:
                 return 1
             if y == [2,2,2]:
@@ -59,8 +59,9 @@ class TicTac(gym.Env):
         self.__init__()
 
     def render(self):
-        render = self.state
-        render[render = 0] = " "
-        render[render = 1] = "x"
-        render[render = 2] = "o"
-        print(render)
+        # render = self.state
+        # render[render = 0] = " "
+        # render[render = 1] = "x"
+        # render[render = 2] = "o"
+        # print(render)
+        print(self.state)
