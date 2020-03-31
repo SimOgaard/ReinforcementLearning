@@ -1,88 +1,66 @@
 import gym
 from gym import error, spaces, utils
 from gym.utils import seeding
+import numpy as np
 
 class TicTac(gym.Env):
 	metadata = {'render.modes': ['human']}
 
-	def __init__(self):
-		self.state = []
-		for i in range(3):
-			self.state += [[]]
-			for j in range(3):
-				self.state[i] += ["-"]
-		self.counter = 0
-		self.done = 0
-		self.add = [0, 0]
+    def __init__(self):
+        self.state = np.zeros((3,3))
+		self.done = False
 		self.reward = 0
+        self.turn = 0
+    
+    def check(self):
+        for x in self.state:
+            if x == [1,1,1]:
+                return 1
+            if x == [2,2,2]:
+                return 2
+        for y in np.rot90(self.state):
+            if y == [1,1,1]:
+                return 1
+            if y == [2,2,2]:
+                return 2
+        if self.state[0][2] == self.state[1][1] == self.state[2][0] == 1:
+            return 1
+        if self.state[0][2] == self.state[1][1] == self.state[2][0] == 2:
+            return 2
+        return 0
 
-	def check(self):
+    def step(self, target):
+        if self.done:
+            print("game over")
+        elif not self.state[int(target/3)][target%3]:
+            if not self.turn%2 == 0:
+                self.state[int(target/3)][target%3] = 1
+            else:
+                self.state[int(target/3)][target%3] = 2
+            self.turn += 1
+            if self.turn == 9:
+                self.done == True
+            self.render()
+        else:
+            print("invalid step")
 
-		if(self.counter<5):
-			return 0
-		for i in range(3):
-			if(self.state[i][0] != "-" and self.state[i][1] == self.state[i][0] and self.state[i][1] == self.state[i][2]):
-				if(self.state[i][0] == "o"):
-					return 1
-				else:
-					return 2
-			if(self.state[0][i] != "-" and self.state[1][i] == self.state[0][i] and self.state[1][i] == self.state[2][i]):
-				if(self.state[0][i] == "o"):
-					return 1
-				else:
-					return 2
-		if(self.state[0][0] != "-" and self.state[1][1] == self.state[0][0] and self.state[1][1] == self.state[2][2]):
-			if(self.state[0][0] == "o"):
-				return 1
-			else:
-				return 2
-		if(self.state[0][2] != "-" and self.state[0][2] == self.state[1][1] and self.state[1][1] == self.state[2][0]):
-			if(self.state[1][1] == "o"):
-				return 1
-			else:
-				return 2
+        winner = self.check()
+        if winner:
+            self.done = True
+            print("player", winner, "wins")
+            if winner == 1:
+                self.reward = 1
+            else:
+                self.reward = -1
 
-	def step(self, target):
-		if self.done == 1:
-			print("Game Over")
-			return [self.state, self.reward, self.done, self.add]
-		elif self.state[int(target/3)][target%3] != "-":
-			print("Invalid Step")
-			return [self.state, self.reward, self.done, self.add]
-		else:
-			if(self.counter%2 == 0):
-				self.state[int(target/3)][target%3] = "o"
-			else:
-				self.state[int(target/3)][target%3] = "x"
-			self.counter += 1
-			if(self.counter == 9):
-				self.done = 1;
-			self.render()
+        return [self.state, self.reward, self.done]
 
-		win = self.check()
-		if(win):
-			self.done = 1;
-			print("Player ", win, " wins.", sep = "", end = "\n")
-			self.add[win-1] = 1;
-			if win == 1:
-				self.reward = 100
-			else:
-				self.reward = -100
+    def reset(self):
+        self.__init__()
 
-		return [self.state, self.reward, self.done, self.add]
-
-	def reset(self):
-		for i in range(3):
-			for j in range(3):
-				self.state[i][j] = "-"
-		self.counter = 0
-		self.done = 0
-		self.add = [0, 0]
-		self.reward = 0
-		return self.state
-
-	def render(self):
-		for i in range(3):
-			for j in range(3):
-				print(self.state[i][j], end = " ")
-			print("")
+    def render(self):
+        render = self.state
+        render[render = 0] = " "
+        render[render = 1] = "x"
+        render[render = 2] = "o"
+        print(render)
