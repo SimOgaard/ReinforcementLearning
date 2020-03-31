@@ -68,12 +68,12 @@ class TicTac(gym.Env):
         # # render[render = 1] = "x"
         # # render[render = 2] = "o"
         # # print(render)
-        # for x in self.state:
-        #     print(x)
+        for x in self.state:
+            print(x)
         #     print("")
         # # print(self.state)
 
-        for i in range(3):
-			for j in range(3):
-				print(self.state[i][j], end = " ")
-			print("")
+        # for i in range(3):
+		# 	for j in range(3):
+		# 		print(self.state[i][j], end = " ")
+		# 	print("")
