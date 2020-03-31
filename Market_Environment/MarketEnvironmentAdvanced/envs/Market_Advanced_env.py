@@ -2,7 +2,7 @@ import gym
 from gym import error, spaces, utils
 from gym.utils import seeding
 
-class Market_Medium(gym.Env):
+class Market_Advanced(gym.Env):
     metadata = {'render.modes': ['human']}
     
     # def __init__(self, df):
