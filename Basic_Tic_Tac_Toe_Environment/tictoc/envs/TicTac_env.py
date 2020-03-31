@@ -42,13 +42,9 @@ class TicTac(gym.Env):
                 self.state[int(target/3)][target%3] = 2
             self.turn += 1
             if self.turn == 9:
-                print(self.turn)
                 self.done = True
 
         self.render()
-
-        if self.done:
-            print("game over, no one won")
 
         winner = self.check()
         if winner:
@@ -58,6 +54,9 @@ class TicTac(gym.Env):
                 self.reward = 1
             else:
                 self.reward = -1
+
+        if self.done:
+            print("game over, no one won")
 
         return [self.state, self.reward, self.done, self.turn]
 
