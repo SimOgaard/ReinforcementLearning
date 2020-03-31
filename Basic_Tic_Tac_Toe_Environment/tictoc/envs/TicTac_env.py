@@ -13,15 +13,16 @@ class TicTac(gym.Env):
         self.turn = 0
     
     def check(self):
-        for x in np.nditer(self.state):
-            if x == [1,1,1]:
+        for x in range(3):
+            if self.state[x] == [1,1,1]:
                 return 1
-            if x == [2,2,2]:
+            if self.state[x] == [2,2,2]:
                 return 2
-        for y in np.nditer(self.state)):
-            if y == [1,1,1]:
+        rotated = np.rot90(self.state)
+        for y in range(3):
+            if self.state[y] == [1,1,1]:
                 return 1
-            if y == [2,2,2]:
+            if self.state[y] == [2,2,2]:
                 return 2
         if self.state[0][2] == self.state[1][1] == self.state[2][0] == 1:
             return 1
