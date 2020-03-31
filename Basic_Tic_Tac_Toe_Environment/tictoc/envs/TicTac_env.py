@@ -17,12 +17,10 @@ class TicTac(gym.Env):
                 return 1
             if x == [2,2,2]:
                 return 2
-        rotated = list(zip(*reversed(self.state)))
-        print(rotated)
-        for y in rotated:
-            if y == [1,1,1]:
+        for y in list(zip(*reversed(self.state))):
+            if y == (1,1,1):
                 return 1
-            if y == [2,2,2]:
+            if y == (2,2,2):
                 return 2
         if self.state[0][2] == self.state[1][1] == self.state[2][0] == 1:
             return 1
