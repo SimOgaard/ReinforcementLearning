@@ -1,28 +1,27 @@
 import gym
 from gym import error, spaces, utils
 from gym.utils import seeding
-import numpy as np
 
 class TicTac(gym.Env):
     metadata = {'render.modes': ['human']}
     
     def __init__(self):
-        self.state = np.zeros((3,3))
+        self.state = [[0,0,0],[0,0,0],[0,0,0]]
         self.done = False
         self.reward = 0
         self.turn = 0
     
     def check(self):
-        for x in range(3):
-            if self.state[x] == [1,1,1]:
+        for x in self.state:
+            if x == [1,1,1]:
                 return 1
-            if self.state[x] == [2,2,2]:
+            if x == [2,2,2]:
                 return 2
-        rotated = np.rot90(self.state)
-        for y in range(3):
-            if self.state[y] == [1,1,1]:
+        rotated = list(zip(*reversed(self.state)))
+        for y in rotated:
+            if y == [1,1,1]:
                 return 1
-            if self.state[y] == [2,2,2]:
+            if y == [2,2,2]:
                 return 2
         if self.state[0][2] == self.state[1][1] == self.state[2][0] == 1:
             return 1
