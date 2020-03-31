@@ -1,1 +1,1 @@
-from Market_Environment.envs.Market_Medium_env import Market_Medium
+from MarketEnvironmentMedium.envs.Market_Medium_env import Market_Medium
