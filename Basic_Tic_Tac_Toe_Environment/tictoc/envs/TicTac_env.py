@@ -17,7 +17,9 @@ class TicTac(gym.Env):
                 return 1
             if x == [2,2,2]:
                 return 2
-        for y in list(zip(*reversed(self.state))):
+        rotated = list(zip(*reversed(self.state)))
+        print(rotated)
+        for y in rotated:
             if y == [1,1,1]:
                 return 1
             if y == [2,2,2]:
@@ -30,7 +32,8 @@ class TicTac(gym.Env):
 
     def step(self, target):
         if self.state[int(target/3)][target%3]:
-            print("invalid step")            
+            print("invalid step")
+            return [self.state, self.reward, self.done, self.turn]
         else:
             if not self.turn%2 == 0:
                 self.state[int(target/3)][target%3] = 1
@@ -48,7 +51,7 @@ class TicTac(gym.Env):
                 self.reward = 1
             else:
                 self.reward = -1
-        if self.done:
+        elif self.done:
             print("game over, no one won")
         return [self.state, self.reward, self.done, self.turn]
 
