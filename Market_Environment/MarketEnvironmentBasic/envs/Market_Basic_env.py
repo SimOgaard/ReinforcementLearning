@@ -19,13 +19,16 @@ class Market_Basic(gym.Env):
             self.reward = 1
         else:
             self.reward = -1
-        
-        self.state_index += 1
+    
         self.last_value = self.df.loc[self.state_index, "Open"]
 
         if pd.Index(self.df["Open"]).size == self.state_index:
             self.done = True
+
         self.render()
+
+        self.state_index += 1
+        
         return [self.state_index, self.reward, self.done]
 
     def reset(self):
