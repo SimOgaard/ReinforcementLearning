@@ -38,4 +38,4 @@ class Market_Basic(gym.Env):
         self.last_value = 0
 
     def render(self):
-        self.df.plot(kind='scatter',x='Open',y='Close',color='red')
+        self.df.plot(kind='scatter',x=self.df.Index.values,y='Close',color='red')
