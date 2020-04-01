@@ -42,7 +42,7 @@ class Market_Basic(gym.Env):
         self.df[["Close"]].plot()
 
         for row in range(pd.Index(self.df["Open"]).size):
-            plt.plot(row, self.df.loc[row,"Open"], 'bo')
+            plt.plot(row, self.df.loc[row,"Open"], marker=".", color='greene' if self.df.loc[row,"Guess"] else "red")
 
         plt.show()
 
