@@ -19,10 +19,10 @@ class Market_Basic(gym.Env):
 
         if self.last_value <= self.df.loc[self.state_index, "Open"] and target == 0 or self.last_value > self.df.loc[self.state_index, "Open"] and target == 1:
             self.reward = 1
-            self.pd.loc[self.state_index,"Guess"] = 1
+            self.df.loc[self.state_index,"Guess"] = 1
         else:
             self.reward = -1
-            self.pd.loc[self.state_index,"Guess"] = 0
+            self.df.loc[self.state_index,"Guess"] = 0
         
         self.last_value = self.df.loc[self.state_index, "Open"]
         self.state_index += 1
