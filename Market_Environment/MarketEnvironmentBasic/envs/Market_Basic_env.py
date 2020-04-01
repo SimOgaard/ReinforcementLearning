@@ -13,7 +13,7 @@ class Market_Basic(gym.Env):
         self.state_index = 0
         self.last_value = 0
         self.done = False
-        self.df[["Close"]].plot()
+        self.figure = self.df[["Close"]].plot()
 
     def step(self, target):
 
@@ -36,7 +36,7 @@ class Market_Basic(gym.Env):
         self.done = False
         self.state_index = 0
         self.last_value = 0
-        self.df[["Close"]].plot()
+        self.figure = self.df[["Close"]].plot()
 
     def render(self):
-        plt.show()
+        self.figure.show()
