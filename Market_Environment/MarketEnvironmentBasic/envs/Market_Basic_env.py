@@ -9,22 +9,21 @@ class Market_Basic(gym.Env):
     
     def __init__(self, df):
         self.df = df
+        self.df.append(pd.Series(name="Color"))
         self.max_index = pd.Index(self.df["Open"]).size
         self.state_index = 0
         self.last_value = 0
         self.done = False
-        # self.figure = self.df[["Close"]].plot()
-
+        
     def step(self, target):
-
         self.this_value = self.df.loc[self.state_index, "Open"]
 
         if self.last_value <= self.this_value and target == 0 or self.last_value > self.this_value and target == 1:
             self.reward = 1
         else:
             self.reward = -1
-        plt.plot(self.state_index, self.this_value, marker=".", color='green' if self.reward==1 else "red")
-
+        self.df.loc[self.state_index, "Color"] = "green" if self.reward == 1 else "red"
+    
         self.last_value = self.this_value
         self.state_index += 1
         if self.max_index == self.state_index:
@@ -36,8 +35,9 @@ class Market_Basic(gym.Env):
         self.done = False
         self.state_index = 0
         self.last_value = 0
-        # self.figure = self.df[["Close"]].plot()
 
     def render(self):
         self.df[["Close"]].plot()
+        for index_row in range(self.state_index):
+            plt.plot(index_row, self.df.loc[index_row, "Open"], marker=".", color=self.df.loc[index_row, "Color"])
         plt.show()
