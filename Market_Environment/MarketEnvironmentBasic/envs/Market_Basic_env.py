@@ -40,4 +40,4 @@ class Market_Basic(gym.Env):
 
     def render(self):
         self.df[["Close"]].plot()
-        self.figure.show()
+        plt.show()
