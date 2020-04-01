@@ -38,4 +38,11 @@ class Market_Basic(gym.Env):
         self.last_value = 0
 
     def render(self):
-        self.df.plot(self.df.index, self.df["Close"])
+
+        self.df[["Close"]].plot()
+        plt.show()
+
+
+        # plt.plot(self.df["Close"])
+        
+        # self.df.plot(self.df.index, self.df["Close"])
