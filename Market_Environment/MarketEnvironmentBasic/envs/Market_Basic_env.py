@@ -12,10 +12,10 @@ class Market_Basic(gym.Env):
         # self.df.append(pd.Series(name="Guess"))
         self.max_index = pd.Index(self.df["Open"]).size
         self.state_index = 0
-        self.reward = 0
+        # self.reward = 0
         self.last_value = 0
         self.done = False
-        self.df[["Close"]].plot()
+        # self.df[["Close"]].plot()
 
     def step(self, target):
 
@@ -39,13 +39,13 @@ class Market_Basic(gym.Env):
     def reset(self):
         self.done = False
         self.state_index = 0
-        self.reward = 0
+        # self.reward = 0
         self.last_value = 0
-        self.df[["Close"]].plot()
 
     def render(self):
         # for row in range(pd.Index(self.df["Open"]).size):
         #     plt.plot(row, self.df.loc[row,"Open"], marker=".", color='green' if self.df.loc[row,"Guess"] else "red")
+        self.df[["Close"]].plot()
         plt.show()
 
 
