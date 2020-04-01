@@ -1,6 +1,7 @@
 import gym
 from gym import error, spaces, utils
 from gym.utils import seeding
+import pandas as pd
 
 class Market_Basic(gym.Env):
     metadata = {'render.modes': ['human']}
@@ -22,10 +23,16 @@ class Market_Basic(gym.Env):
         self.state_index += 1
         self.last_value = self.df.loc[self.state_index, "Open"]
 
+        if pd.Index(self.df).size == self.state_index:
+            self.done = True
+
         return [self.state_index, self.reward, self.done]
 
     def reset(self):
-       
+        self.done = False
+        self.state_index = 0
+        self.reward = 0
+        self.last_value = 0
 
     def render(self):
-       
+        print(self.df)
