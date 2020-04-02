@@ -16,6 +16,8 @@ class Market_Medium(gym.Env):
         self.state_index = 1
         self.last_value = self.prices[0]
         self.done = False
+
+        self.step(0)
         
     def step(self, target):
         self.this_value = self.prices[self.state_index]
