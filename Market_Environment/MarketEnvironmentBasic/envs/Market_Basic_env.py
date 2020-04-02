@@ -10,7 +10,7 @@ class Market_Basic(gym.Env):
     def __init__(self, df):
         self.prices = df.loc[:, 'Close'].to_numpy()
         self.max_index = self.prices.size
-        self.selection = np.empty([self.max_index])
+        self.selection = []
         
         self.state_index = 0
         self.last_value = 0
@@ -21,10 +21,10 @@ class Market_Basic(gym.Env):
 
         if self.last_value <= self.this_value and target == 0 or self.last_value > self.this_value and target == 1:
             self.reward = 1
-            self.selection[self.state_index] = "green"
+            self.selection.append("green")
         else:
             self.reward = -1
-            self.selection[self.state_index] = "red"
+            self.selection.append("red")
     
         self.last_value = self.this_value
         self.state_index += 1
@@ -37,7 +37,7 @@ class Market_Basic(gym.Env):
         self.done = False
         self.state_index = 0
         self.last_value = 0
-        self.selection = np.empty([self.max_index])
+        self.selection = []
 
     def render(self):
         self.prices.plot()
