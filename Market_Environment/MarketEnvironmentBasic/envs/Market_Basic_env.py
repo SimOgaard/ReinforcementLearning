@@ -11,7 +11,8 @@ class Market_Basic(gym.Env):
         self.df = df
         self.df.append(pd.Series(name="Color"))
         self.max_index = pd.Index(self.df["Open"]).size
-        
+        self.prices = self.df.loc[:, 'Close'].to_numpy()
+        print(self.prices)        
         self.state_index = 0
         self.last_value = 0
         self.done = False
