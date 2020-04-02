@@ -13,8 +13,8 @@ class Market_Medium(gym.Env):
         self.selection = []
 
         self.trading_fee = 0.005
-        self.state_index = 1
-        self.last_value = self.prices[0]
+        self.state_index = 0
+        self.last_value = 0
         self.done = False
 
         self.step(0)
@@ -59,6 +59,7 @@ class Market_Medium(gym.Env):
         self.state_index = 0
         self.last_value = 0
         self.selection = []
+        self.step(0)
 
     def render(self):
         plt.plot(self.prices)
