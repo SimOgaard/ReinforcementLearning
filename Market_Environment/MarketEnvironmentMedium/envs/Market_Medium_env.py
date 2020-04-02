@@ -24,7 +24,8 @@ class Market_Medium(gym.Env):
         self.keep_reward = self.this_value - self.last_value
         self.sell_reward = self.last_value - self.this_value - self.last_value * self.trading_fee
 
-        self.reward_rank_list = [self.buy_reward, self.keep_reward, self.sell_reward].sort(reverse=True)
+        self.reward_rank_list = [self.buy_reward, self.keep_reward, self.sell_reward]
+        self.reward_rank_list.sort(reverse=True)
 
         print(self.reward_rank_list, self.buy_reward, self.keep_reward, self.sell_reward)
 
