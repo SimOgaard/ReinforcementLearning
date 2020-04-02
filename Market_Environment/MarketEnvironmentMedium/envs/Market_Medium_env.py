@@ -11,7 +11,7 @@ class Market_Medium(gym.Env):
         self.prices = df.loc[:, 'Close'].to_numpy()
         self.max_index = self.prices.size
         self.selection = []
-        
+
         self.trading_fee = 0.005
         self.state_index = 1
         self.last_value = self.prices[0]
@@ -24,7 +24,9 @@ class Market_Medium(gym.Env):
         self.keep_reward = self.this_value - self.last_value
         self.sell_reward = self.last_value - self.this_value - self.last_value * self.trading_fee
 
-        self.reward_rank_list = [self.buy_reward, self.keep_reward, self.sell_reward].sort()
+        self.reward_rank_list = [self.buy_reward, self.keep_reward, self.sell_reward].sort(reverse=True)
+
+        print(self.reward_rank_list)
 
         if target == 0: # buy
             self.reward = self.buy_reward
