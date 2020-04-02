@@ -40,7 +40,7 @@ class Market_Basic(gym.Env):
         self.selection = []
 
     def render(self):
-        self.prices.plot()
+        plt.plot(self.prices)
         for index_row in range(self.state_index):
             plt.plot(index_row, self.prices[index_row], marker=".", color=self.selection[index_row])
         plt.show()
