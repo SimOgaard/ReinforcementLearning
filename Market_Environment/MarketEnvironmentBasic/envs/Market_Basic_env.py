@@ -8,7 +8,7 @@ class Market_Basic(gym.Env):
     metadata = {'render.modes': ['human']}
     
     def __init__(self, df):
-        self.prices = self.df.loc[:, 'Close'].to_numpy()
+        self.prices = df.loc[:, 'Close'].to_numpy()
         self.max_index = self.prices.size
         self.selection = np.empty([self.max_index])
         
