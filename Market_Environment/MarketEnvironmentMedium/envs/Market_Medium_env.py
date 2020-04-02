@@ -29,8 +29,6 @@ class Market_Medium(gym.Env):
         self.reward_rank_list = [self.buy_reward, self.keep_reward, self.sell_reward]
         self.reward_rank_list.sort(reverse=True)
 
-        print(self.reward_rank_list, self.buy_reward, self.keep_reward, self.sell_reward)
-
         if target == 0: # buy
             self.reward = self.buy_reward
         elif target == 1: # keep
