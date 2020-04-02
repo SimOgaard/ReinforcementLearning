@@ -1,7 +1,7 @@
 import gym
 from gym import error, spaces, utils
 from gym.utils import seeding
-import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 
 class Market_Basic(gym.Env):
