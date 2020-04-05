@@ -4,7 +4,7 @@ from gym.utils import seeding
 import numpy as np
 import matplotlib.pyplot as plt
 
-class Market_Medium(gym.Env):
+class Market2(gym.Env):
     metadata = {'render.modes': ['human']}
     
     def __init__(self, df):
