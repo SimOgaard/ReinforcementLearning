@@ -1,5 +1,7 @@
 # Market-environment
 
+# GAMMAL READ ME FIXAR SNART
+
 ## Uppgift
 Detta är en fortsättning av mitt [Förra Projekt](https://github.com/abbsimoga/Enstaka-programerings-projekt/tree/master/Enstaka_programering/StockMarket).
 

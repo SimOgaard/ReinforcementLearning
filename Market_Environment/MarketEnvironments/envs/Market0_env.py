@@ -28,8 +28,8 @@ class Market0(gym.Env):
     
         self.last_value = self.this_value
         self.state_index += 1
-        if self.max_index == self.state_index:
-            self.done = True
+        
+        self.done = self.max_index == self.state_index
 
         return [self.state_index, self.reward, self.done]
 
