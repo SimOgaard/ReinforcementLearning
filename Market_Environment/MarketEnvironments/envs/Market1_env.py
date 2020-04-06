@@ -22,21 +22,7 @@ class Market1(gym.Env):
     def step(self, target):
         self.this_value = self.prices[self.state_index]
 
-        self.buy_reward = (self.this_value - self.last_value)*2 - self.last_value * self.trading_fee
-        self.keep_reward = self.this_value - self.last_value
-        self.sell_reward = self.last_value - self.this_value - self.last_value * self.trading_fee
-
-        self.reward_rank_list = [self.buy_reward, self.keep_reward, self.sell_reward]
-        self.reward_rank_list.sort(reverse=True)
-
-        if target == 0:
-            self.reward = self.buy_reward
-        elif target == 1:
-            self.reward = self.keep_reward
-        else:
-            self.reward = self.sell_reward
-        
-        self.reward_rank = self.reward_rank_list.index(self.reward)
+        self.reward_rank, self.reward = self.reward(self, target)
 
         if self.reward_rank == 0:
             self.selection.append("green")
@@ -51,6 +37,25 @@ class Market1(gym.Env):
         self.done = self.max_index == self.state_index
 
         return [self.state_index, self.reward, self.done]
+
+    def reward(self, target):
+        buy_reward = (self.this_value - self.last_value)*2 - self.last_value * self.trading_fee
+        keep_reward = self.this_value - self.last_value
+        sell_reward = self.last_value - self.this_value - self.last_value * self.trading_fee
+
+        reward_rank_list = [buy_reward, keep_reward, sell_reward]
+        reward_rank_list.sort(reverse=True)
+
+        if target == 0:
+            reward = buy_reward
+        elif target == 1:
+            reward = keep_reward
+        else:
+            reward = sell_reward
+        
+        reward_rank = reward_rank_list.index(reward)
+
+        return reward_rank, reward
 
     def reset(self):
         self.done = False
