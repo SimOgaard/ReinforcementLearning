@@ -40,16 +40,16 @@ class Market1(gym.Env):
 
     def get_reward(self, target):
         buy_reward = (self.this_value - self.last_value)*2 - self.last_value * self.trading_fee
-        keep_reward = self.this_value - self.last_value
+        hold_reward = self.this_value - self.last_value
         sell_reward = self.last_value - self.this_value - self.last_value * self.trading_fee
 
-        reward_rank_list = [buy_reward, keep_reward, sell_reward]
+        reward_rank_list = [buy_reward, hold_reward, sell_reward]
         reward_rank_list.sort(reverse=True)
 
         if target == 0:
             reward = buy_reward
         elif target == 1:
-            reward = keep_reward
+            reward = hold_reward
         else:
             reward = sell_reward
         
@@ -63,6 +63,7 @@ class Market1(gym.Env):
         self.last_value = 0
         self.selection = []
         self.step(0)
+        return self.state_index
 
     def render(self):
         plt.plot(self.prices)

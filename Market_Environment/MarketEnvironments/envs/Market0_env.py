@@ -40,6 +40,7 @@ class Market0(gym.Env):
         self.state_index = 0
         self.last_value = 0
         self.selection = []
+        return self.state_index
 
     def render(self):
         plt.plot(self.prices)
