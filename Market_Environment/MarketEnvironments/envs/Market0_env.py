@@ -19,7 +19,7 @@ class Market0(gym.Env):
     def step(self, target):
         self.this_value = self.prices[self.state_index]
 
-        self.reward = self.reward(target)
+        self.reward = self.get_reward(target)
     
         self.last_value = self.this_value
         self.state_index += 1
@@ -28,8 +28,8 @@ class Market0(gym.Env):
 
         return [self.state_index, self.reward, self.done]
 
-    def reward(self, target_):
-        if self.last_value <= self.this_value and target_ == 0 or self.last_value > self.this_value and target_ == 1:
+    def get_reward(self, target):
+        if self.last_value <= self.this_value and target == 0 or self.last_value > self.this_value and target == 1:
             self.selection.append("green")
             return 1
         self.selection.append("red")
