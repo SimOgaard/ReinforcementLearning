@@ -63,7 +63,7 @@ class Market1(gym.Env):
         self.selection = []
         return self.state_index
 
-    def reward(self, plots):
+    def render(self, plots):
         plt.plot(self.prices)
         for index_row in range(self.state_index):
             plt.plot(index_row, self.prices[index_row], marker=".", color=self.plots[index_row])
