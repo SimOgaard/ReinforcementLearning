@@ -9,16 +9,16 @@ class Market1(gym.Env):
     
     def __init__(self, df):
         self.prices = df.loc[:, 'Close'].to_numpy()
-        self.max_index = self.prices.size
+        self.max_index = self.prices.size-1
         self.selection = []
 
         self.trading_fee = 0.005
         self.state_index = 0
-        self.last_value = 0
         self.done = False
         
     def step(self, target):
         self.this_value = self.prices[self.state_index]
+        self.next_value = self.prices[self.state_index+1]
 
         self.reward_rank, self.reward = self.get_reward(target)
 
@@ -29,7 +29,6 @@ class Market1(gym.Env):
         else:
             self.selection.append("red")
 
-        self.last_value = self.this_value
         self.state_index += 1
 
         self.done = self.max_index == self.state_index
@@ -37,9 +36,9 @@ class Market1(gym.Env):
         return [self.state_index, self.reward, self.done]
 
     def get_reward(self, target):
-        buy_reward = (self.this_value - self.last_value)*2 - self.last_value * self.trading_fee
-        hold_reward = self.this_value - self.last_value
-        sell_reward = self.last_value - self.this_value - self.last_value * self.trading_fee
+        buy_reward = (self.next_value - self.this_value)*2 - self.this_value * self.trading_fee
+        hold_reward = self.next_value - self.this_value
+        sell_reward = self.this_value - self.next_value - self.this_value * self.trading_fee
 
         reward_rank_list = [buy_reward, hold_reward, sell_reward]
         reward_rank_list.sort(reverse=True)
@@ -58,7 +57,6 @@ class Market1(gym.Env):
     def reset(self):
         self.done = False
         self.state_index = 0
-        self.last_value = 0
         self.selection = []
         return self.state_index
 
