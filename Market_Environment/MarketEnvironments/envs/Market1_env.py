@@ -66,5 +66,5 @@ class Market1(gym.Env):
     def render(self, plots):
         plt.plot(self.prices)
         for index_row in range(self.state_index):
-            plt.plot(index_row, self.prices[index_row], marker=".", color=self.plots[index_row])
+            plt.plot(index_row, self.prices[index_row], marker=".", color=plots[index_row])
         plt.show()
