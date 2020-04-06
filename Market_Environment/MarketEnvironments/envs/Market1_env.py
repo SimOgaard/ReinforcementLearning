@@ -16,8 +16,6 @@ class Market1(gym.Env):
         self.state_index = 0
         self.last_value = 0
         self.done = False
-
-        self.step(0)
         
     def step(self, target):
         self.this_value = self.prices[self.state_index]
@@ -62,7 +60,6 @@ class Market1(gym.Env):
         self.state_index = 0
         self.last_value = 0
         self.selection = []
-        self.step(0)
         return self.state_index
 
     def render(self):
