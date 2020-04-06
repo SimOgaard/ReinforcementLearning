@@ -34,6 +34,16 @@ class Market1(gym.Env):
         hold_reward = self.next_value - self.this_value
         sell_reward = self.this_value - self.next_value - self.this_value * self.trading_fee
 
+        if target == 0:
+            self.selection_plot.append("green")
+            reward = buy_reward
+        elif target == 1:
+            self.selection_plot.append("yellow")
+            reward = hold_reward
+        else:
+            self.selection_plot.append("red")
+            reward = sell_reward
+
         reward_rank_list = [buy_reward, hold_reward, sell_reward]
         reward_rank_list.sort(reverse=True)
         reward_rank = reward_rank_list.index(reward)
@@ -45,16 +55,6 @@ class Market1(gym.Env):
         else:
             self.reward_plot.append("red")
 
-        if target == 0:
-            self.selection_plot.append("green")
-            reward = buy_reward
-        elif target == 1:
-            self.selection_plot.append("yellow")
-            reward = hold_reward
-        else:
-            self.selection_plot.append("red")
-            reward = sell_reward
-        
         return reward
 
     def reset(self):
