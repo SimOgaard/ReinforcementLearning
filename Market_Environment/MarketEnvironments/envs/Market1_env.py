@@ -20,9 +20,10 @@ class Market1(gym.Env):
         self.step(0)
         
     def step(self, target):
+        self.target = target
         self.this_value = self.prices[self.state_index]
 
-        self.reward_rank, self.reward = self.reward(target)
+        self.reward_rank, self.reward = self.reward(self.target)
 
         if self.reward_rank == 0:
             self.selection.append("green")

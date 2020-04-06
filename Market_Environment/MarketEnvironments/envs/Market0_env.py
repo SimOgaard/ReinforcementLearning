@@ -17,9 +17,10 @@ class Market0(gym.Env):
         self.done = False
         
     def step(self, target):
+        self.target = target
         self.this_value = self.prices[self.state_index]
 
-        self.reward = self.reward(target)
+        self.reward = self.reward(self.target)
     
         self.last_value = self.this_value
         self.state_index += 1
