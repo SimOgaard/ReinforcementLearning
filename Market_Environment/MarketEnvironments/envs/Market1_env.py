@@ -60,7 +60,8 @@ class Market1(gym.Env):
     def reset(self):
         self.done = False
         self.state_index = 0
-        self.selection = []
+        self.selection_plot = []
+        self.reward_plot = []
         return self.state_index
 
     def render(self, plots):
