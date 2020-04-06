@@ -9,29 +9,20 @@ class Market2(gym.Env):
     
     def __init__(self, df):
         self.prices = df.loc[:, 'Close'].to_numpy()
-        self.max_index = self.prices.size
-        self.selection = []
+        self.max_index = self.prices.size-1
+        self.selection_plot = []
+        self.reward_plot = []
 
         self.trading_fee = 0.005
         self.state_index = 0
-        self.last_value = 0
         self.done = False
-
-        self.step(0)
         
     def step(self, target):
         self.this_value = self.prices[self.state_index]
+        self.next_value = self.prices[self.state_index+1]
 
-        self.reward_rank, self.reward = self.get_reward(target)
+        self.reward = self.get_reward(target)
 
-        if self.reward_rank == 0:
-            self.selection.append("green")
-        elif self.reward_rank == 1:
-            self.selection.append("yellow")
-        else:
-            self.selection.append("red")
-
-        self.last_value = self.this_value
         self.state_index += 1
 
         self.done = self.max_index == self.state_index
@@ -39,34 +30,41 @@ class Market2(gym.Env):
         return [self.state_index, self.reward, self.done]
 
     def get_reward(self, target):
-        buy_reward = (self.this_value - self.last_value)*2 - self.last_value * self.trading_fee
-        hold_reward = self.this_value - self.last_value
-        sell_reward = self.last_value - self.this_value - self.last_value * self.trading_fee
+        buy_reward = (self.next_value - self.this_value)*2 - self.this_value * self.trading_fee
+        hold_reward = self.next_value - self.this_value
+        sell_reward = self.this_value - self.next_value - self.this_value * self.trading_fee
 
         reward_rank_list = [buy_reward, hold_reward, sell_reward]
         reward_rank_list.sort(reverse=True)
-
-        if target == 0:
-            reward = buy_reward
-        elif target == 1:
-            reward = hold_reward
-        else:
-            reward = sell_reward
-        
         reward_rank = reward_rank_list.index(reward)
 
-        return reward_rank, reward
+        if reward_rank == 0:
+            self.reward_plot.append("green")
+        elif reward_rank == 1:
+            self.reward_plot.append("yellow")
+        else:
+            self.reward_plot.append("red")
+
+        if target == 0:
+            self.selection_plot.append("green")
+            reward = buy_reward
+        elif target == 1:
+            self.selection_plot.append("yellow")
+            reward = hold_reward
+        else:
+            self.selection_plot.append("red")
+            reward = sell_reward
+        
+        return reward
 
     def reset(self):
         self.done = False
         self.state_index = 0
-        self.last_value = 0
         self.selection = []
-        self.step(0)
         return self.state_index
 
-    def render(self):
+    def reward(self, plots):
         plt.plot(self.prices)
         for index_row in range(self.state_index):
-            plt.plot(index_row, self.prices[index_row], marker=".", color=self.selection[index_row])
+            plt.plot(index_row, self.prices[index_row], marker=".", color=self.plots[index_row])
         plt.show()
