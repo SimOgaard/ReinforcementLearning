@@ -8,7 +8,7 @@ class Market2(gym.Env):
     metadata = {'render.modes': ['human']}
     
     def __init__(self, df):
-        self.prices = df.loc[:, :4]#.to_numpy()
+        self.prices = df.loc[:, "High":"Close"].to_numpy()
         print(self.prices)
         self.max_index = self.prices.size-1
         self.selection_plot = []
