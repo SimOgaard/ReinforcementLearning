@@ -33,3 +33,4 @@ class Agent1:
         self.random_action = 0
         self.max_min_action = 0
         self.total_reward = 0
+        self.epsilon = self.epsilon * self.epsilon_decay
