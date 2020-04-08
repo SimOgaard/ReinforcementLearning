@@ -19,10 +19,10 @@ class Agent1:
 
     def act(self):
         if np.random.rand() < self.epsilon:
-            self.random_action++
+            self.random_action += 1
             return np.random.randint(self.action_size)
         else:
-            self.max_min_action++
+            self.max_min_action += 1
             return np.argmax(Q[state])
 
     def update_q_table(self, reward, state, action):
