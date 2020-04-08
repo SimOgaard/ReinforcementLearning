@@ -28,7 +28,7 @@ def FileSortments():
     with open("/content/ReinforcementLearning/DataMarket/sp500tickers.pickle","wb") as f:
         pickle.dump(tickers,f)
 
-    if not os.path.exists("/content/ReinforcementLearning/DataMarket/data/")
+    if not os.path.exists("/content/ReinforcementLearning/DataMarket/data/"):
         os.mkdir("/content/ReinforcementLearning/DataMarket/data/")
 
     for ticker in tickers[:stockAmount]:
