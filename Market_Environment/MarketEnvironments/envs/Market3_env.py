@@ -4,11 +4,11 @@ from gym.utils import seeding
 import numpy as np
 import matplotlib.pyplot as plt
 
-class Market1(gym.Env):
+class Market3(gym.Env):
     metadata = {'render.modes': ['human']}
     
     def __init__(self, df):
-        self.prices = df.loc[:, 'Close'].to_numpy()
+        self.prices = df.loc[:, "High":"Close"].to_numpy()
         self.max_index = self.prices.size-1
         self.selection_plot = []
         self.reward_plot = []
@@ -19,8 +19,8 @@ class Market1(gym.Env):
         self.done = False
         
     def step(self, target):
-        self.this_value = self.prices[self.state_index]
-        self.next_value = self.prices[self.state_index+1]
+        self.this_reward_value = self.prices[self.state_index]
+        self.next_reward_value = self.prices[self.state_index+1]
 
         self.reward = self.get_reward(target)
 
@@ -31,9 +31,9 @@ class Market1(gym.Env):
         return [self.state_index, self.reward, self.done]
 
     def get_reward(self, target):
-        buy_reward = (self.next_value - self.this_value)*2 - self.this_value * self.trading_fee
-        hold_reward = self.next_value - self.this_value
-        sell_reward = self.this_value - self.next_value - self.this_value * self.trading_fee
+        buy_reward = (self.next_reward_value - self.this_reward_value)*2 - self.this_reward_value * self.trading_fee
+        hold_reward = self.next_reward_value - self.this_reward_value
+        sell_reward = self.this_reward_value - self.next_reward_value - self.this_reward_value * self.trading_fee
 
         if target == 0:
             self.selection_plot.append("green")

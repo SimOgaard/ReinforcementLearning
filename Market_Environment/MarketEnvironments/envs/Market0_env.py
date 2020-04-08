@@ -12,10 +12,10 @@ class Market0(gym.Env):
         self.max_index = self.prices.size-1
         self.selection_plot = []
         self.reward_plot = []
-        
+
         self.state_index = 0
         self.done = False
-        
+
     def step(self, target):
         self.selection_plot.append("red" if target else "green")
         self.this_value = self.prices[self.state_index]

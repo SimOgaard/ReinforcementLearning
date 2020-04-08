@@ -8,12 +8,12 @@ class Market2(gym.Env):
     metadata = {'render.modes': ['human']}
     
     def __init__(self, df):
-        self.prices = df.loc[:, "High":"Close"].to_numpy()
-        print(self.prices)
+        self.prices = df.loc[:, 'Close'].to_numpy()
         self.max_index = self.prices.size-1
         self.selection_plot = []
         self.reward_plot = []
 
+        self.action_size = 3
         self.trading_fee = 0.005
         self.state_index = 0
         self.done = False
