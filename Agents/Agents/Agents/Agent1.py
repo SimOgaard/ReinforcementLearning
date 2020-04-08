@@ -17,7 +17,7 @@ class Agent1:
         self.epsilon = 1
         self.epsilon_decay = 0.8
 
-    def act(self):
+    def act(self, state):
         if np.random.rand() < self.epsilon:
             self.random_action += 1
             return np.random.randint(self.action_size)
