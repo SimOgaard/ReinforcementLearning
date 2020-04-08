@@ -1,7 +1,6 @@
 import numpy as np
 
 class Agent0:
-    metadata = {'render.modes': ['human']}
     
     def __init__(self):
         self.action_size = 2
