@@ -23,7 +23,7 @@ class Agent1:
             return np.random.randint(self.action_size)
         else:
             self.max_min_action += 1
-            return np.argmax(Q[state])
+            return np.argmax(self.q_table[state])
 
     def update_q_table(self, reward, state, action):
         self.total_reward += reward
