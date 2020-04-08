@@ -19,8 +19,8 @@ class Market2(gym.Env):
         self.done = False
         
     def step(self, target):
-        self.this_reward_value = self.prices[self.state_index]
-        self.next_reward_value = self.prices[self.state_index+1]
+        self.this_reward_value = self.prices[self.state_index, "Close"]
+        self.next_reward_value = self.prices[self.state_index+1, "Close"]
 
         self.reward = self.get_reward(target)
 
@@ -28,7 +28,7 @@ class Market2(gym.Env):
 
         self.done = self.max_index == self.state_index
 
-        return [self.state_index, self.reward, self.done]
+        return [self.state_index, self.reward, self.done, self.prices[self.state_index]]
 
     def get_reward(self, target):
         buy_reward = (self.next_reward_value - self.this_reward_value)*2 - self.this_reward_value * self.trading_fee

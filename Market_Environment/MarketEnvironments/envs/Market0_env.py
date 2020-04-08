@@ -27,7 +27,7 @@ class Market0(gym.Env):
     
         self.done = self.max_index == self.state_index
 
-        return [self.state_index, self.reward, self.done]
+        return [self.state_index, self.reward, self.done, self.this_value]
 
     def get_reward(self, target):
         if self.this_value <= self.next_value and target == 0 or self.this_value > self.next_value and target == 1:

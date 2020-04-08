@@ -28,7 +28,7 @@ class Market1(gym.Env):
 
         self.done = self.max_index == self.state_index
 
-        return [self.state_index, self.reward, self.done]
+        return [self.state_index, self.reward, self.done, self.this_value]
 
     def get_reward(self, target):
         buy_reward = (self.next_value - self.this_value)*2 - self.this_value * self.trading_fee
