@@ -97,7 +97,6 @@ class Agent2:
             mini_batch.append(self.memory[i])
 
         for state, action, reward, next_state, done in mini_batch:
-            print(state, action, reward, next_state, done)
             target = reward
             
             if not done:
