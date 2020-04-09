@@ -39,7 +39,7 @@ class Agent2:
         model.add(Dense(units=64, input_dim=100, activation="relu"))
         model.add(Dense(units=32, activation="relu"))
         model.add(Dense(units=8, activation="relu"))
-        model.add(Dense(self.action_size, activation="linear"))
+        model.add(Dense(3, activation="linear"))
         model.compile(loss="mse", optimizer=Adam(lr=0.001))
         return model
 
@@ -77,6 +77,7 @@ class Agent2:
             # print(self.model.predict(self.state))
             # return np.argmax(self.model.predict(self.state)[0])
             options = self.model.predict(state)
+            print(options)
             return np.argmax(options[0])
 
     def new_episode(self):
