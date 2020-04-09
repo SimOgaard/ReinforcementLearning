@@ -45,7 +45,7 @@ class Agent2:
             return np.random.randint(self.action_size)
         else:
             self.mlp_action += 1
-            return np.argmax(self.model.predict(int(state))[0])
+            return np.argmax(self.model.predict(state)[0])
 
     def new_episode(self):
         self.random_action = 0
