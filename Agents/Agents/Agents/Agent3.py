@@ -14,11 +14,7 @@ class Agent3:
 
         print(self.action_space)
 
-        # nparound = np.around(df)
-        self.stock_price_history = np.around(df)
-        # self.stock_price_history = np.delete(nparound, 5, 1)
-        # self.stock_price_history.drop(["Volume"], axis=1)
-        # self.stock_price_history.drop(4)
+        self.stock_price_history = np.around(df.drop('Volume', axis=1))
 
         print(self.stock_price_history)
 
