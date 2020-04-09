@@ -62,22 +62,22 @@ class Agent2:
         return 1 / (1 + math.exp(-x))
 
     def getState(self, data, t, n):
-        print("l")
+        # print("l")
         d = t - n + 1
-        print("a")
+        # print("a")
         block = data[d:t + 1] if d >= 0 else -d * [data[0]] + data[0:t + 1] # pad with t0
-        print("m")
+        # print("m")
         res = []
         for i in range(n - 1):
-            print("a")
+            # print("a")
             res.append(self.sigmoid(block[i + 1] - block[i]))
-        print("o")
-
+        # print("a")
+        # print(res)
         return np.array([res])
 
     def act(self, state):
 
-        self.state = self.getState(self.data, state, self.state_size)
+        self.state = self.getState(self.data, state, 5)
 
         if np.random.rand() < self.epsilon:
             self.random_action += 1
