@@ -20,9 +20,7 @@ class Agent2:
         price_range = [[1, mx] for mx in self.stock_price_history.max(axis=1)]
 
         self.observation_space = spaces.MultiDiscrete([price_range])
-
-        # self.q_table = np.zeros([self.state_size, self.action_size])
-
+        
         self.random_action = 0
         self.mlp_action = 0
         self.total_reward = 0
@@ -32,7 +30,6 @@ class Agent2:
         self.epsilon = 1
         self.epsilon_decay = 0.8
 
-        # self.memory = deque(maxlen=1000)
         self.model = self.mlp()
 
     def mlp(self):
@@ -44,20 +41,13 @@ class Agent2:
         model.compile(loss="mse", optimizer=Adam(lr=0.001))
         return model
 
-    # def remember(self, state, action, reward, next_state, done):
-    #     self.memory.append((state, action, reward, next_state, done))
-
     def act(self, state):
         if np.random.rand() < self.epsilon:
             self.random_action += 1
             return np.random.randint(self.action_size)
         else:
             self.mlp_action += 1
-            return np.argmax(self.model.predict(state)[0])
-
-    def update_q_table(self, reward, state, action):
-        self.total_reward += reward
-        self.q_table[state, action] = reward
+            return np.argmax(self.model.predict(int(state))[0])
 
     def new_episode(self):
         self.random_action = 0
