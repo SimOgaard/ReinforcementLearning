@@ -36,7 +36,7 @@ class Agent2:
 
     def mlp(self):
         model = Sequential()
-        model.add(Dense(units=64, input_dim=100, activation="relu"))
+        model.add(Dense(units=64, input_dim=self.observation_space, activation="relu"))
         model.add(Dense(units=32, activation="relu"))
         model.add(Dense(units=8, activation="relu"))
         model.add(Dense(self.action_size, activation="linear"))
@@ -73,7 +73,7 @@ class Agent2:
             return np.random.randint(self.action_size)
         else:
             self.mlp_action += 1
-            # print(state)
+            print(self.state)
             print(self.model.predict(self.state))
             return np.argmax(self.model.predict(self.state)[0])
 
