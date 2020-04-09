@@ -45,6 +45,7 @@ class Agent2:
             return np.random.randint(self.action_size)
         else:
             self.mlp_action += 1
+            print(state)
             print(self.model.predict(state))
             return np.argmax(self.model.predict(state)[0])
 
