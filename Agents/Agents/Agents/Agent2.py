@@ -77,7 +77,8 @@ class Agent2:
 
     def act(self, state):
 
-        self.state = self.getState(self.data, state, 5)
+        self.state = self.getState(self.data, state, state)
+        # agent.memory.append((state, action, reward, next_state, done))
 
         if np.random.rand() < self.epsilon:
             self.random_action += 1
