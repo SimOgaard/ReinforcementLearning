@@ -45,7 +45,7 @@ class Agent2:
         model.add(Dense(units=64, input_dim=5, activation="relu"))
         model.add(Dense(units=32, activation="relu"))
         model.add(Dense(units=8, activation="relu"))
-        model.add(Dense(3, activation="linear"))
+        model.add(Dense(2, activation="linear"))
         model.compile(loss="mse", optimizer=Adam(lr=0.001))
         return model
 
