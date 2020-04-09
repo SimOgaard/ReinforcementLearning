@@ -6,6 +6,8 @@ from tensorflow.keras.optimizers import Adam
 
 from gym import spaces
 
+import math
+
 class Agent2:
     
     def __init__(self, state_size, action_size, df):
