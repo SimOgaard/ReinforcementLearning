@@ -41,7 +41,7 @@ class Agent2:
         model.compile(loss="mse", optimizer=Adam(lr=0.001))
         return model
 
-    def getStockDataVec(key):
+    def getStockDataVec(self, key):
         vec = []
         lines = open("/content/ReinforcementLearning/DataMarket/data/MMM.csv", "r").read().splitlines()
 
@@ -50,7 +50,7 @@ class Agent2:
 
         return vec
 
-    def sigmoid(x):
+    def sigmoid(self, x):
         return 1 / (1 + math.exp(-x))
 
     def getState(self, data, t, n):
