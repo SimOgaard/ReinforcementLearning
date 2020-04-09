@@ -15,7 +15,7 @@ class Agent3:
         print(self.action_space)
 
         self.stock_price_history = np.around(df)
-        self.stock_price_history.drop("Volume")
+        self.stock_price_history.drop(5)
 
         print(self.stock_price_history)
 
