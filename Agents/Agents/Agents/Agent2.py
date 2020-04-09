@@ -1,10 +1,8 @@
 import numpy as np
 
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.optimizers import Adam
-
-from collections import deque
+from tf.keras.models import Sequential
+from tf.keras.layers import Dense
+from tf.keras.optimizers import Adam
 
 from gym import spaces
 
@@ -20,7 +18,7 @@ class Agent2:
         price_range = [[1, mx] for mx in self.stock_price_history.max(axis=1)]
 
         self.observation_space = spaces.MultiDiscrete([price_range])
-        
+
         self.random_action = 0
         self.mlp_action = 0
         self.total_reward = 0
