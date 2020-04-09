@@ -28,7 +28,7 @@ class Agent2:
         self.epsilon = 1
         self.epsilon_decay = 0.8
 
-        self.data = getStockDataVec("stock_name")
+        self.data = self.getStockDataVec("stock_name")
 
         self.model = self.mlp()
 
@@ -58,13 +58,13 @@ class Agent2:
         block = data[d:t + 1] if d >= 0 else -d * [data[0]] + data[0:t + 1] # pad with t0
         res = []
         for i in range(n - 1):
-            res.append(sigmoid(block[i + 1] - block[i]))
+            res.append(self.sigmoid(block[i + 1] - block[i]))
 
         return np.array([res])
 
     def act(self, state):
 
-        self.state = getState(self.data, state, self.state_size)
+        self.state = self.getState(self.data, state, self.state_size)
 
         if np.random.rand() < self.epsilon:
             self.random_action += 1
