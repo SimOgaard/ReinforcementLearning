@@ -17,7 +17,7 @@ class Agent2:
 
         price_range = [[1, mx] for mx in self.stock_price_history.max(axis=1)]
 
-        self.observation_space = spaces.MultiDiscrete(price_range)
+        self.observation_space = spaces.MultiDiscrete([price_range])
 
         self.random_action = 0
         self.mlp_action = 0
