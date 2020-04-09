@@ -42,7 +42,7 @@ class Agent2:
 
     def mlp(self):
         model = Sequential()
-        model.add(Dense(units=64, input_dim=4, activation="relu"))
+        model.add(Dense(units=64, input_dim=5, activation="relu"))
         model.add(Dense(units=32, activation="relu"))
         model.add(Dense(units=8, activation="relu"))
         model.add(Dense(3, activation="linear"))
@@ -77,7 +77,7 @@ class Agent2:
 
     def act(self, state):
 
-        self.state = self.getState(self.data, state, state)
+        self.state = self.getState(self.data, state, 5)
         # agent.memory.append((state, action, reward, next_state, done))
 
         if np.random.rand() < self.epsilon:
