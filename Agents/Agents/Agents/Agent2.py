@@ -43,7 +43,7 @@ class Agent2:
 
     def getStockDataVec(key):
         vec = []
-        lines = open("/content/ReinforcementLearning/DataMarket/data/ABT.csv", "r").read().splitlines()
+        lines = open("/content/ReinforcementLearning/DataMarket/data/MMM.csv", "r").read().splitlines()
 
         for line in lines[1:]:
             vec.append(float(line.split(",")[4]))
