@@ -19,7 +19,7 @@ class Agent3:
         print(self.stock_price_history)
 
         stock_max_price = self.stock_price_history.max(axis=1)
-        price_range = [[0, mx] for mx in stock_max_price]
+        price_range = [[0, abs(mx)] for mx in stock_max_price]
 
         print(stock_max_price)
         print(price_range)
