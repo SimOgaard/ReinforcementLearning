@@ -8,7 +8,7 @@ from collections import deque
 
 from gym import spaces
 
-class Agent2:
+class Agent3:
     def __init__(self, df, init_invest = 20000):
         self.action_space = spaces.Discrete(3)
 
