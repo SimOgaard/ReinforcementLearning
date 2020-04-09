@@ -99,7 +99,7 @@ class Agent2:
 
 
 
-	def expReplay(self, batch_size):
+    def expReplay(self, batch_size):
         mini_batch = []
         l = len(self.memory)
         for i in range(l - batch_size + 1, l):
