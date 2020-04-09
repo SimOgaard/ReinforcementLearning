@@ -36,7 +36,7 @@ class Agent2:
 
     def mlp(self):
         model = Sequential()
-        model.add(Dense(units=64, input_dim=self.observation_space, activation="relu"))
+        model.add(Dense(units=64, input_dim=100, activation="relu"))
         model.add(Dense(units=32, activation="relu"))
         model.add(Dense(units=8, activation="relu"))
         model.add(Dense(self.action_size, activation="linear"))
