@@ -15,19 +15,16 @@ class Agent3:
         print(self.action_space)
 
         self.stock_price_history = np.around(df)
+        self.stock_price_history.drop("Volume")
 
         print(self.stock_price_history)
 
         stock_max_price = self.stock_price_history.max(axis=1)
-        stock_range = [[0, init_invest * 2 // mx] for mx in stock_max_price]
         price_range = [[0, mx] for mx in stock_max_price]
-        cash_in_hand_range = [[0, init_invest * 2]]
 
         print(stock_max_price)
-        print(stock_range)
         print(price_range)
-        print(cash_in_hand_range)        
 
-        self.observation_space = spaces.MultiDiscrete(stock_range + price_range + cash_in_hand_range)
+        self.observation_space = spaces.MultiDiscrete(price_range)
 
         print(self.observation_space)
