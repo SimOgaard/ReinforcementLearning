@@ -6,7 +6,7 @@ from keras.optimizers import Adam
 
 from collections import deque
 
-class Agent1:
+class Agent2:
     
     def __init__(self, state_size, action_size):
         self.state_size = state_size
