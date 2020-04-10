@@ -7,7 +7,7 @@ Detta är en fortsättning av mitt [Förra Projekt](https://github.com/abbsimoga
 
 I denna fortsättning använde jag mig utav bibloteket **_OpenAI gym_** för att skapa mitt egna *enviornment* samt *agent*. Med bakgrundskunskaper från **_Hands-On Q-Learning with Python_** och praktiska kunskaper där jag skulle intregrera **_Q-Lerning_** till tre redan skapade gym [*Taxi*, *CartPole* och *Bandit*](https://colab.research.google.com/drive/1SvR4zw3NDKJeBPpvlGZFbAgfKw7yoaIt#scrollTo=RfQiX2gThCDT).
 
-Arbetet började med skapandet av ett eget *Tic Tac Toe* [gym](https://github.com/abbsimoga/ReinforcementLearning/tree/master/Basic_Tic_Tac_Toe_Environment) på grund av arbetets komplexitet. [Här](https://medium.com/@apoddar573/making-your-own-custom-environment-in-gym-c3b65ff8cdaa) är Medium länken jag följde för skapandet av *Tic Tac Toe* gymmet. Större del av detta arbetet följde min förra kod och exemplerna ovan men även dessa Medium länkar: [länk 1](https://towardsdatascience.com/creating-a-custom-openai-gym-environment-for-stock-trading-be532be3910e) [länk 2](https://towardsdatascience.com/cartpole-introduction-to-reinforcement-learning-ed0eb5b58288) [länk3](https://towardsdatascience.com/trade-smarter-w-reinforcement-learning-a5e91163f315) [länk 4](https://towardsdatascience.com/using-reinforcement-learning-to-trade-bitcoin-for-massive-profit-b69d0e8f583b).
+Arbetet började med skapandet av ett eget *Tic Tac Toe* [gym](https://github.com/abbsimoga/ReinforcementLearning/tree/master/Basic_Tic_Tac_Toe_Environment) på grund av arbetets komplexitet. [Här](https://medium.com/@apoddar573/making-your-own-custom-environment-in-gym-c3b65ff8cdaa) är Medium länken jag följde för skapandet av *Tic Tac Toe* gymmet. Större del av detta arbetet följde min förra kod och exemplerna ovan men även dessa Medium länkar: [länk 1](https://towardsdatascience.com/creating-a-custom-openai-gym-environment-for-stock-trading-be532be3910e), [länk 2](https://towardsdatascience.com/cartpole-introduction-to-reinforcement-learning-ed0eb5b58288), [länk3](https://towardsdatascience.com/trade-smarter-w-reinforcement-learning-a5e91163f315) samt [länk 4](https://towardsdatascience.com/using-reinforcement-learning-to-trade-bitcoin-for-massive-profit-b69d0e8f583b).
 
 # Förklarning av Q-Learning
 Jag kommer härdan över nämna några ord som **_agent_**, **_enviornment_**, **_state_** med mera. Och ska försöka ge dig enkla förklarningar för vad dessa betyder. Samt ge dig en generell förståelse över hur RL-algorythmer funkar speciellt Q-Learning.
@@ -29,6 +29,8 @@ Jag kommer härdan över nämna några ord som **_agent_**, **_enviornment_**, *
 **_Policy_** är strategin som **_agenten_** använder för att bestämma nästa **_action_** baserad på det aktuella **_state_**. Typ **_agentens_** "kunskaper".
 
 
+Enklaste Q-learning "algorythmen" skapar   
+
 -Användning av Q-table som löser taxi problemet
 
 -Användning av *** som löser cartpole problemet
@@ -46,13 +48,7 @@ Jag kommer härdan över nämna några ord som **_agent_**, **_enviornment_**, *
 # Grafer
 
 ### Avläsande av grafer
-**_Blåa_** delen av grafen är *agentens* *observation* där den inte invisterar.
-
-**_Gröna_** och **_röda_** markörer tyder på agentens gissning av *Short* och *Long* positioner. Förklarning för *Short* och *Long* finner du [Här](https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/stock-purchases-and-sales-long-and). **_Grön_** markör betyder att agenten gissade rätt och **_röd_** markör betyder att agenten gissade fel.
-
-**_Totl Profit_** är multipliken av pengarna agenten började med. *Total Profit* på **2** betyder att agenten dubblade sin insats. Total Profit på **0.5** betyder att agenten förlorade halva sin insats.
-
-**_max_possible_profit_** är den största möjliga multipliken av pengarna agenten började med.
+**_Gröna_** och **_röda_** markörer tyder på agentens gissning av *Short* och *Long* positioner. Förklarning för *Short* och *Long* finner du [Här](https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/stock-purchases-and-sales-long-and). **_Grön_** markör betyder att agenten gissade rätt och **_röd_** markör betyder att agenten gissade fel eventuella **_gula_** markörer betyder att agenten gissade nästintill optimalt.
 
 **_Y-Axeln_** är värdet på aktsiens *["Close"]* värde, definition finner du [Här](https://www.investopedia.com/terms/c/closingprice.asp).
 
