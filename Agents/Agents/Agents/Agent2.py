@@ -60,7 +60,7 @@ class Agent2:
         res = []
         for i in range(n-1):
             res.append(self.sigmoid(block[i + 1] - block[i]))
-        return np.array([res])
+        return np.array(res)
 
     def act(self, state):
 
