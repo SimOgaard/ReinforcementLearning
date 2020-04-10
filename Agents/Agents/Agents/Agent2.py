@@ -92,9 +92,13 @@ class Agent2:
             if not done:
                 target = reward + self.gamma * np.amax(self.model.predict(next_state)[0])
             
+            print("ss")
+
             target_f = self.model.predict(state)
             target_f[0][action] = target
             self.model.fit(state, target_f, epochs=1, verbose=0)
 
+            print("ss")
+            
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay 
