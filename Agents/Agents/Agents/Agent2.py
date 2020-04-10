@@ -43,13 +43,9 @@ class Agent2:
         return model
 
     def get_stock_data_vec(self, data):
-        # vec = []
-        # for line in data[1:]:
-        #     for lines in line
-        #         rad = []
-        #         rad.append(lines)
-        #     vec.append(float(line.split(",")[4]))
-        vec = np.vectorize(data)
+        vec = []
+        for index in data[1:]:
+            vec.append(index[4])
         return vec
 
     def sigmoid(self, x):
