@@ -24,9 +24,8 @@ class Agent2:
         self.total_reward = 0
 
         self.gamma = 0.1
-        self.alpha = 0.1
         self.epsilon = 1
-        self.epsilon_decay = 0.95
+        self.epsilon_decay = 0.995
         self.epsilon_min = 0.01
 
         self.data = df['Close'].tolist()

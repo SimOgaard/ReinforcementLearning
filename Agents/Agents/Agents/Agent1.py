@@ -13,7 +13,6 @@ class Agent1:
         self.total_reward = 0
 
         self.gamma = 0.1
-        self.alpha = 0.1
         self.epsilon = 1
         self.epsilon_decay = 0.8
 
