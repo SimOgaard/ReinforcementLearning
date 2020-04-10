@@ -17,7 +17,7 @@ class Agent2:
         
         stock_wo_volume = df.drop('Volume', axis=1)
         stock_price_history = np.around(stock_wo_volume)
-        price_range = [[1, mx] for mx in self.stock_price_history.max(axis=1)]
+        price_range = [[1, mx] for mx in stock_price_history.max(axis=1)]
 
         self.random_action = 0
         self.mlp_action = 0
