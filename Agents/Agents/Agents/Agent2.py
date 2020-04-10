@@ -60,7 +60,7 @@ class Agent2:
         res = []
         for i in range(n-1):
             res.append(self.sigmoid(block[i + 1] - block[i]))
-        return np.array(res)
+        return np.array([res])
 
     def act(self, state):
 
@@ -92,7 +92,7 @@ class Agent2:
             print("ss")
 
             if not done:
-                target = reward + self.gamma * np.amax(self.model.predict([next_state])[0])
+                target = reward + self.gamma * np.amax(self.model.predict(next_state)[0])
             
             print("ss")
 
