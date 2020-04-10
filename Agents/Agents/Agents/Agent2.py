@@ -92,7 +92,7 @@ class Agent2:
             print("ss")
 
             if not done:
-                target = reward + self.gamma * np.amax(self.model.predict(next_state)[0])
+                target = reward + self.gamma * np.amax(self.model.predict([next_state])[0])
             
             print("ss")
 
