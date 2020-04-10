@@ -44,7 +44,7 @@ class Agent2:
 
     def get_stock_data_vec(self, data):
         vec = []
-        for line in lines[1:]:
+        for line in data[1:]:
             vec.append(float(line.split(",")[4]))
         return vec
 
