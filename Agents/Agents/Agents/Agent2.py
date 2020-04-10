@@ -30,7 +30,6 @@ class Agent2:
         self.epsilon_min = 0.01
 
         self.data = df['Close'].tolist()
-        # self.data = self.get_stock_data_vec(df)
         self.model = self.mlp()
         self.memory = deque(maxlen=1000)
 
@@ -64,7 +63,7 @@ class Agent2:
 
     def act(self, state):
 
-        self.state = self.get_state(self.data, state, self.day_memory) # backwards compadible with other environments
+        self.state = self.get_state(self.data, state, self.day_memory)
 
         if np.random.rand() < self.epsilon:
             self.random_action += 1
@@ -86,21 +85,14 @@ class Agent2:
             mini_batch.append(self.memory[i])
 
         for state, action, reward, next_state, done in mini_batch:
-            print(state, action, reward, next_state, done)
             target = reward
-            
-            print("ss")
 
             if not done:
                 target = reward + self.gamma * np.amax(self.model.predict(next_state)[0])
-            
-            print("ss")
 
             target_f = self.model.predict(state)
             target_f[0][action] = target
             self.model.fit(state, target_f, epochs=1, verbose=0)
-
-            print("ss")
             
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay 
