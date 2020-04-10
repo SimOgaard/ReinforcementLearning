@@ -29,7 +29,8 @@ class Agent2:
         self.epsilon_decay = 0.95
         self.epsilon_min = 0.01
 
-        self.data = self.get_stock_data_vec(df)
+        self.data = df['Close'].tolist()
+        # self.data = self.get_stock_data_vec(df)
         self.model = self.mlp()
         self.memory = deque(maxlen=1000)
 
@@ -44,7 +45,8 @@ class Agent2:
 
     def get_stock_data_vec(self, data):
         vec = []
-        for index in data[1:]:
+        for index in data[:][1:]:
+            print(index)
             vec.append(index[4])
         return vec
 
