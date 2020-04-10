@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 import tensorflow.keras
 from tensorflow.keras.models import Sequential
@@ -6,23 +7,17 @@ from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
 
 from gym import spaces
-
-import math
-
 from collections import deque
 
 class Agent2:
     
-    def __init__(self, state_size, action_size, df):
-        self.state_size = state_size
+    def __init__(self, action_size, df, day_memory):
         self.action_size = action_size
-
-        self.action_space = spaces.Discrete(self.action_size)
-        self.stock_price_history = np.around(df.drop('Volume', axis=1))
-
+        self.day_memory = day_memory
+        
+        stock_wo_volume = df.drop('Volume', axis=1)
+        stock_price_history = np.around(stock_wo_volume)
         price_range = [[1, mx] for mx in self.stock_price_history.max(axis=1)]
-
-        self.observation_space = spaces.MultiDiscrete([price_range])
 
         self.random_action = 0
         self.mlp_action = 0
@@ -31,47 +26,43 @@ class Agent2:
         self.gamma = 0.1
         self.alpha = 0.1
         self.epsilon = 1
-        self.epsilon_decay = 0.8
+        self.epsilon_decay = 0.95
         self.epsilon_min = 0.01
 
-        self.data = self.getStockDataVec("stock_name")
-
+        self.data = self.get_stock_data_vec(df)
         self.model = self.mlp()
-
         self.memory = deque(maxlen=1000)
 
     def mlp(self):
         model = Sequential()
-        model.add(Dense(units=64, input_dim=5, activation="relu"))
+        model.add(Dense(units=64, input_dim=self.day_memory, activation="relu"))
         model.add(Dense(units=32, activation="relu"))
         model.add(Dense(units=8, activation="relu"))
-        model.add(Dense(2, activation="linear"))
+        model.add(Dense(self.action_size, activation="linear"))
         model.compile(loss="mse", optimizer=Adam(lr=0.001))
         return model
 
-    def getStockDataVec(self, key):
+    def get_stock_data_vec(self, data):
         vec = []
-        lines = open("/content/ReinforcementLearning/DataMarket/data/MMM.csv", "r").read().splitlines()
-
         for line in lines[1:]:
             vec.append(float(line.split(",")[4]))
-
         return vec
 
     def sigmoid(self, x):
         return 1 / (1 + math.exp(-x))
 
-    def getState(self, data, t, n):
+    def get_state(self, data, t, n):
+        n+=1
         d = t - n + 1
         block = data[d:t + 1] if d >= 0 else -d * [data[0]] + data[0:t + 1]
         res = []
-        for i in range(n - 1):
+        for i in range(n-1):
             res.append(self.sigmoid(block[i + 1] - block[i]))
         return np.array([res])
 
     def act(self, state):
 
-        self.state = self.getState(self.data, state, 6)
+        self.state = self.get_state(self.data, state, self.day_memory) # backwards compadible with other environments
 
         if np.random.rand() < self.epsilon:
             self.random_action += 1
@@ -86,11 +77,7 @@ class Agent2:
         self.mlp_action = 0
         self.total_reward = 0
 
-    def action_sample(self):
-        self.random_action += 1
-        return np.random.randint(self.action_size)
-
-    def expReplay(self, batch_size):
+    def exp_replay(self, batch_size):
         mini_batch = []
         l = len(self.memory)
         for i in range(l - batch_size + 1, l):
