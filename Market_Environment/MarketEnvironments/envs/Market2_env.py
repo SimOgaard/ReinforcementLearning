@@ -23,7 +23,7 @@ class Market2(gym.Env):
         
     def step(self, target):
         self.state = self.get_state(self.state_index, self.data_amount)
-        print(self.state)
+
         self.this_reward_value = self.prices[self.state_index, 3]
         self.next_reward_value = self.prices[self.state_index+1, 3]
 
@@ -43,9 +43,7 @@ class Market2(gym.Env):
         d = t - n + 1
         for column in self.prices.T:
             column = column.tolist()
-            print(column)
             block = column[d:t + 1] if d >= 0 else -d * [column[0]] + column[0:t + 1]
-            print(block)
             res = []
             for i in range(n-1):
                 res.append(self.sigmoid(block[i + 1] - block[i]))
