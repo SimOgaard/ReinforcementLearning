@@ -84,6 +84,7 @@ class Market2(gym.Env):
         return self.state_index
 
     def render(self, plots, title):
+        print(self.prices)
         plt.plot(self.prices[3])
         plt.title(title)
         for index_row in range(self.state_index):
