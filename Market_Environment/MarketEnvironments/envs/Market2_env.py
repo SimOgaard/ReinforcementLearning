@@ -52,6 +52,7 @@ class Market2(gym.Env):
         n+=1
         d = t - n + 1
         for column in self.prices.T:
+            column = column.tolist()
             print(column)
             block = column[d:t + 1] if d >= 0 else -d * [column[0]] + column[0:t + 1]
             print(block)
