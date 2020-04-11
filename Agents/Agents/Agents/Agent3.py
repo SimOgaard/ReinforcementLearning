@@ -9,7 +9,7 @@ from tensorflow.keras.optimizers import Adam
 from gym import spaces
 from collections import deque
 
-class Agent2:
+class Agent3:
     
     def __init__(self, action_size, df, day_memory):
         self.action_size = action_size
