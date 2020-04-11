@@ -48,6 +48,7 @@ class Market2(gym.Env):
             for i in range(n-1):
                 data.append(self.sigmoid(block[i + 1] - block[i]))
             # data.append(res)
+        print(data)
         return np.array(data)
 
     def get_reward(self, target):
