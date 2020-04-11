@@ -37,11 +37,22 @@ class Market2(gym.Env):
     def sigmoid(self, x):
         return 1 / (1 + math.exp(-x))
 
+
+    # def get_state(self, data, t, n):
+    #     n+=1
+    #     d = t - n + 1
+    #     block = data[d:t + 1] if d >= 0 else -d * [data[0]] + data[0:t + 1]
+    #     res = []
+    #     for i in range(n-1):
+    #         res.append(self.sigmoid(block[i + 1] - block[i]))
+    #     return np.array([res])
+
     def get_state(self, t, n):
         data = []
         n+=1
         d = t - n + 1
         for column in self.prices.T:
+            print(column)
             block = column[d:t + 1] if d >= 0 else -d * [column[0]] + column[0:t + 1]
             res = []
             for i in range(n-1):
