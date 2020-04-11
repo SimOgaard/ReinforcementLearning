@@ -9,7 +9,7 @@ class Market2(gym.Env):
     
     def __init__(self, df):
         prices = df.drop('Volume', axis=1)
-        self.prices = prices.loc[:, ["High":"Close", "Adj Close"]].to_numpy()
+        self.prices = prices.loc[:, ["High", "Low", "Open", "Close", "Adj Close"]].to_numpy()
         self.max_index = self.prices.size-1
         self.selection_plot = []
         self.reward_plot = []
