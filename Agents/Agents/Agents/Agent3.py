@@ -40,7 +40,11 @@ class Agent3:
             return np.random.randint(self.action_size)
         else:
             self.mlp_action += 1
-            options = self.model.predict(state)
+            try:
+                options = self.model.predict(state)
+            except:
+                print(state)
+                return np.random.randint(self.action_size)
             return np.argmax(options[0])
 
     def new_episode(self):
