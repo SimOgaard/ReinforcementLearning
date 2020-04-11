@@ -5,6 +5,8 @@ import tensorflow.keras
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.models import load_model
+from tensorflow.keras.models import save_model
 
 from collections import deque
 
@@ -83,3 +85,9 @@ class Agent2:
             
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay 
+
+    def load_model(self, model_name):
+        self.model = load_model("/content/ReinforcementLearning/models/" + model_name)
+
+    def save_model(self, model_name):
+        save_model("/content/ReinforcementLearning/models/" + model_name)
