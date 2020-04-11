@@ -22,6 +22,7 @@ class Market2(gym.Env):
         
     def step(self, target):
         self.state = self.get_state(self.state_index, self.data_amount)
+        print(self.state)
         self.this_reward_value = self.prices[self.state_index, "Close"]
         self.next_reward_value = self.prices[self.state_index+1, "Close"]
 
@@ -36,24 +37,36 @@ class Market2(gym.Env):
         return 1 / (1 + math.exp(-x))
 
     def get_state(self, t, n):
-
-        # [värden för x dagar]
-
         data = []
-        for x in self.prices[1:]:
-            data.append(x.tolist())
-        # data['Close'].tolist() # for all
-
-
-        for info in data:
-            
+        for column in self.prices.T:
             n+=1
             d = t - n + 1
-            block = data[d:t + 1] if d >= 0 else -d * [data[0]] + data[0:t + 1]
+            block = column[d:t + 1] if d >= 0 else -d * [column[0]] + column[0:t + 1]
             res = []
             for i in range(n-1):
                 res.append(self.sigmoid(block[i + 1] - block[i]))
-        return np.array([res])
+            data.append(res)
+        return np.array(data)
+
+    # def get_state(self, t, n):
+
+    #     # [värden för x dagar]
+
+    #     data = []
+    #     for x in self.prices[1:]:
+    #         data.append(x.tolist())
+    #     # data['Close'].tolist() # for all
+
+
+    #     for info in data:
+            
+    #         n+=1
+    #         d = t - n + 1
+    #         block = data[d:t + 1] if d >= 0 else -d * [data[0]] + data[0:t + 1]
+    #         res = []
+    #         for i in range(n-1):
+    #             res.append(self.sigmoid(block[i + 1] - block[i]))
+    #     return np.array([res])
 
     def get_reward(self, target):
         buy_reward = (self.next_reward_value - self.this_reward_value)*2 - self.this_reward_value * self.trading_fee
