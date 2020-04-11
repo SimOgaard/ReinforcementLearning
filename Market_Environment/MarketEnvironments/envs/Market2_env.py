@@ -54,6 +54,7 @@ class Market2(gym.Env):
         for column in self.prices.T:
             print(column)
             block = column[d:t + 1] if d >= 0 else -d * [column[0]] + column[0:t + 1]
+            print(block)
             res = []
             for i in range(n-1):
                 res.append(self.sigmoid(block[i + 1] - block[i]))
