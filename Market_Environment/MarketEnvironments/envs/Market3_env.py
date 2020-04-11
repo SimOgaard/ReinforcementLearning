@@ -2,16 +2,19 @@ import gym
 from gym import error, spaces, utils
 from gym.utils import seeding
 import numpy as np
+import math
 import matplotlib.pyplot as plt
 
-# Market 2 but with more stocks
+# Kunna betta på flera aktiser
 
 class Market3(gym.Env):
     metadata = {'render.modes': ['human']}
     
-    def __init__(self, df):
-        self.prices = df.loc[:, "High":"Close"].to_numpy()
-        self.max_index = self.prices.size-1
+    def __init__(self, df, data_amount):
+        prices = df.drop('Volume', axis=1)
+        self.prices = prices.loc[:, ["High", "Low", "Open", "Close", "Adj Close"]].to_numpy()
+        self.max_index = df["Close"].size-1
+        self.data_amount = data_amount
         self.selection_plot = []
         self.reward_plot = []
 
@@ -21,16 +24,31 @@ class Market3(gym.Env):
         self.done = False
         
     def step(self, target):
-        self.this_reward_value = self.prices[self.state_index]
-        self.next_reward_value = self.prices[self.state_index+1]
+        self.state = self.get_state(self.state_index, self.data_amount)
+
+        self.this_reward_value = self.prices[self.state_index, 3]
+        self.next_reward_value = self.prices[self.state_index+1, 3]
 
         self.reward = self.get_reward(target)
 
         self.state_index += 1
-
         self.done = self.max_index == self.state_index
 
-        return [self.state_index, self.reward, self.done]
+        return [self.state, self.reward, self.done]
+
+    def sigmoid(self, x):
+        return 1 / (1 + math.exp(-x))
+
+    def get_state(self, t, n):
+        data = []
+        n+=1
+        d = t - n + 1
+        for column in self.prices.T:
+            column = column.tolist()
+            block = column[d:t + 1] if d >= 0 else -d * [column[0]] + column[0:t + 1]
+            for i in range(n-1):
+                data.append(self.sigmoid(block[i + 1] - block[i]))
+        return np.array([data])
 
     def get_reward(self, target):
         buy_reward = (self.next_reward_value - self.this_reward_value)*2 - self.this_reward_value * self.trading_fee
@@ -68,8 +86,8 @@ class Market3(gym.Env):
         return self.state_index
 
     def render(self, plots, title):
-        plt.plot(self.prices)
+        plt.plot(self.prices.transpose()[3])
         plt.title(title)
         for index_row in range(self.state_index):
-            plt.plot(index_row, self.prices[index_row], marker=".", color=plots[index_row])
+            plt.plot(index_row, self.prices.transpose()[3][index_row], marker=".", color=plots[index_row])
         plt.show()
