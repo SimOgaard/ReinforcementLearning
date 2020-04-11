@@ -45,9 +45,9 @@ class Agent2:
         block = data[d:t + 1] if d >= 0 else -d * [data[0]] + data[0:t + 1]
 
         print(data)
-        block = column[d:t + 1] if d >= 0 else -d * [column[0]] + column[0:t + 1]
         print(block)
         print("AAAAAAAAh")
+
         res = []
         for i in range(n-1):
             res.append(self.sigmoid(block[i + 1] - block[i]))
