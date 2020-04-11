@@ -8,7 +8,8 @@ class Market2(gym.Env):
     metadata = {'render.modes': ['human']}
     
     def __init__(self, df):
-        self.prices = df.loc[:, "High":"Close"].to_numpy()
+        prices = df.drop('Volume', axis=1)
+        self.prices = prices.loc[:, ["High":"Close", "Adj Close"]].to_numpy()
         self.max_index = self.prices.size-1
         self.selection_plot = []
         self.reward_plot = []
@@ -29,6 +30,25 @@ class Market2(gym.Env):
         self.done = self.max_index == self.state_index
 
         return [self.state_index, self.reward, self.done, self.prices[self.state_index]]
+
+    def get_stock_data_vec(self, data):
+        vec = []
+        for index in data[:][1:]:
+            print(index)
+            vec.append(index[4])
+        return vec
+
+    def sigmoid(self, x):
+        return 1 / (1 + math.exp(-x))
+
+    def get_state(self, data, t, n):
+        n+=1
+        d = t - n + 1
+        block = data[d:t + 1] if d >= 0 else -d * [data[0]] + data[0:t + 1]
+        res = []
+        for i in range(n-1):
+            res.append(self.sigmoid(block[i + 1] - block[i]))
+        return np.array([res])
 
     def get_reward(self, target):
         buy_reward = (self.next_reward_value - self.this_reward_value)*2 - self.this_reward_value * self.trading_fee

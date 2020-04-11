@@ -14,6 +14,10 @@ class Agent2:
     def __init__(self, action_size, df, day_memory):
         self.action_size = action_size
         self.day_memory = day_memory
+        
+        stock_wo_volume = df.drop('Volume', axis=1)
+        stock_price_history = np.around(stock_wo_volume)
+        price_range = [[1, mx] for mx in stock_price_history.max(axis=1)]
 
         self.random_action = 0
         self.mlp_action = 0
@@ -37,22 +41,7 @@ class Agent2:
         model.compile(loss="mse", optimizer=Adam(lr=0.001))
         return model
 
-    def sigmoid(self, x):
-        return 1 / (1 + math.exp(-x))
-
-    def get_state(self, data, t, n):
-        n+=1
-        d = t - n + 1
-        block = data[d:t + 1] if d >= 0 else -d * [data[0]] + data[0:t + 1]
-        res = []
-        for i in range(n-1):
-            res.append(self.sigmoid(block[i + 1] - block[i]))
-        return np.array([res])
-
     def act(self, state):
-
-        self.state = self.get_state(self.data, state, self.day_memory)
-
         if np.random.rand() < self.epsilon:
             self.random_action += 1
             return np.random.randint(self.action_size)
