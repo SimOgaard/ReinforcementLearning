@@ -43,7 +43,7 @@ class Agent3:
             try:
                 options = self.model.predict(state)
             except:
-                print(state)
+                # print("Error: State:",state)
                 return np.random.randint(self.action_size)
             return np.argmax(options[0])
 
