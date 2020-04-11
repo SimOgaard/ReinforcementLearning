@@ -24,8 +24,8 @@ class Market2(gym.Env):
     def step(self, target):
         self.state = self.get_state(self.state_index, self.data_amount)
         print(self.state)
-        self.this_reward_value = self.prices[self.state_index, "Close"]
-        self.next_reward_value = self.prices[self.state_index+1, "Close"]
+        self.this_reward_value = self.prices[self.state_index, 3]
+        self.next_reward_value = self.prices[self.state_index+1, 3]
 
         self.reward = self.get_reward(target)
 
