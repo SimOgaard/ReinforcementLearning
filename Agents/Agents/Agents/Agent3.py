@@ -1,12 +1,10 @@
 import numpy as np
-import math
 
 import tensorflow.keras
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
 
-from gym import spaces
 from collections import deque
 
 class Agent3:

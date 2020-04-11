@@ -6,7 +6,6 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
 
-from gym import spaces
 from collections import deque
 
 class Agent2:
@@ -52,8 +51,6 @@ class Agent2:
     def act(self, state):
 
         self.state = self.get_state(self.data, state, self.day_memory)
-
-        print(self.state)
 
         if np.random.rand() < self.epsilon:
             self.random_action += 1
