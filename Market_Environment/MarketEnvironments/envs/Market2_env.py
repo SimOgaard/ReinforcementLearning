@@ -7,10 +7,11 @@ import matplotlib.pyplot as plt
 class Market2(gym.Env):
     metadata = {'render.modes': ['human']}
     
-    def __init__(self, df):
+    def __init__(self, df, data_amount):
         prices = df.drop('Volume', axis=1)
         self.prices = prices.loc[:, ["High", "Low", "Open", "Close", "Adj Close"]].to_numpy()
         self.max_index = self.prices.size-1
+        self.data_amount = data_amount
         self.selection_plot = []
         self.reward_plot = []
 
@@ -20,34 +21,38 @@ class Market2(gym.Env):
         self.done = False
         
     def step(self, target):
+        self.state = self.get_state(self.state_index, self.data_amount)
         self.this_reward_value = self.prices[self.state_index, "Close"]
         self.next_reward_value = self.prices[self.state_index+1, "Close"]
 
         self.reward = self.get_reward(target)
 
         self.state_index += 1
-
         self.done = self.max_index == self.state_index
 
-        return [self.state_index, self.reward, self.done, self.prices[self.state_index]]
-
-    def get_stock_data_vec(self, data):
-        vec = []
-        for index in data[:][1:]:
-            print(index)
-            vec.append(index[4])
-        return vec
+        return [self.state, self.reward, self.done]
 
     def sigmoid(self, x):
         return 1 / (1 + math.exp(-x))
 
-    def get_state(self, data, t, n):
-        n+=1
-        d = t - n + 1
-        block = data[d:t + 1] if d >= 0 else -d * [data[0]] + data[0:t + 1]
-        res = []
-        for i in range(n-1):
-            res.append(self.sigmoid(block[i + 1] - block[i]))
+    def get_state(self, t, n):
+
+        # [värden för x dagar]
+
+        data = []
+        for x in self.prices[1:]:
+            data.append(x.tolist())
+        # data['Close'].tolist() # for all
+
+
+        for info in data:
+            
+            n+=1
+            d = t - n + 1
+            block = data[d:t + 1] if d >= 0 else -d * [data[0]] + data[0:t + 1]
+            res = []
+            for i in range(n-1):
+                res.append(self.sigmoid(block[i + 1] - block[i]))
         return np.array([res])
 
     def get_reward(self, target):

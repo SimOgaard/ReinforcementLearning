@@ -14,10 +14,6 @@ class Agent3:
     def __init__(self, action_size, df, day_memory):
         self.action_size = action_size
         self.day_memory = day_memory
-        
-        stock_wo_volume = df.drop('Volume', axis=1)
-        stock_price_history = np.around(stock_wo_volume)
-        price_range = [[1, mx] for mx in stock_price_history.max(axis=1)]
 
         self.random_action = 0
         self.mlp_action = 0
@@ -28,9 +24,8 @@ class Agent3:
         self.epsilon_decay = 0.995
         self.epsilon_min = 0.01
 
-        self.data = df['Close'].tolist()
         self.model = self.mlp()
-        self.memory = deque(maxlen=1000)
+        self.memory = deque(maxlen=2000)
 
     def mlp(self):
         model = Sequential()
@@ -47,7 +42,7 @@ class Agent3:
             return np.random.randint(self.action_size)
         else:
             self.mlp_action += 1
-            options = self.model.predict(self.state)
+            options = self.model.predict(state)
             return np.argmax(options[0])
 
     def new_episode(self):

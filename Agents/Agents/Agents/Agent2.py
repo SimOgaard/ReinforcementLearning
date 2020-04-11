@@ -53,6 +53,8 @@ class Agent2:
 
         self.state = self.get_state(self.data, state, self.day_memory)
 
+        print(self.state)
+
         if np.random.rand() < self.epsilon:
             self.random_action += 1
             return np.random.randint(self.action_size)
