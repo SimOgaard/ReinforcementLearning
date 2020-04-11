@@ -89,5 +89,5 @@ class Agent2:
     def load_model(self, model_name):
         self.model = load_model("/content/ReinforcementLearning/models/" + model_name)
 
-    def save_model(self, model_name):
-        save_model("/content/ReinforcementLearning/models/" + model_name)
+    def save_model(self, model, model_name):
+        save_model(model, "/content/ReinforcementLearning/models/" + model_name)
