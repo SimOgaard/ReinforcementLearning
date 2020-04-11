@@ -49,7 +49,7 @@ class Market2(gym.Env):
                 data.append(self.sigmoid(block[i + 1] - block[i]))
             # data.append(res)
         print(data)
-        return np.array(data)
+        return np.array([data])
 
     def get_reward(self, target):
         buy_reward = (self.next_reward_value - self.this_reward_value)*2 - self.this_reward_value * self.trading_fee
