@@ -4,6 +4,8 @@ from gym.utils import seeding
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Market 2 but with more stocks
+
 class Market3(gym.Env):
     metadata = {'render.modes': ['human']}
     

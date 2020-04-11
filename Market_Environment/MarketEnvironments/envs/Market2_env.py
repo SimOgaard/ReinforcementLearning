@@ -40,7 +40,6 @@ class Market2(gym.Env):
     def get_state(self, t, n):
         data = []
         for column in self.prices.T:
-            n+=1
             d = t - n + 1
             block = column[d:t + 1] if d >= 0 else -d * [column[0]] + column[0:t + 1]
             res = []
