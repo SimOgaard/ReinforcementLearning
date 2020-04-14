@@ -56,3 +56,22 @@ Kommande bild visar på att invistering i aktsier *innom* **_sp500_** leder till
 #### Göra fler tester av andra "policy" och "modell's"
 #### Använd annan typ av RL-algorythm
 #### Interigera andra mlp  -->
+
+<!-- AI PROJECT
+
+TICTACTOE
+skapar q-table med possible spelplaner en player random, en player q-learning
+
+
+
+MARKET ENVIRONMENT
+
+använd all data de senaste fem dagarna från olika aktsier för att veta
+
+den bästa action i n^3 utförs
+
+testa alla med data den aldrig sett för att se om några funkar
+
+
+
+rena upp och uppdatera readme där du går igenom hur du gjorde projektet  -->
